@@ -40,7 +40,7 @@ std::vector<T_> Fisher_Yates ( const std::vector<T_> & cards ) {
 int main ( void ) {
     std::vector<std::string> players;
     std::string player;
-    size_t team_one, team_two, team_total;
+    size_t team_one = 4, team_two = 4, team_total = 0;
     std::ifstream ifs ( "in.txt" );
     while ( ifs >> player ) {
         team_total++;
@@ -79,6 +79,12 @@ int main ( void ) {
     srand( time ( nullptr ) );
     std::string map = MAPS[rand() % MAPS . size()];
     std::cout << "Map: " << map << std::endl;
+    while ( REROLL . count ( map ) ) {
+        std::cout << "Cringe Map, Rerolling..." << std::endl;
+        usleep ( 500'000 );
+        map = MAPS[rand() % MAPS . size()];
+        std::cout << "Maybe you should try: " << map << std::endl;
+    }
 
     //std::vector<std::string> a = { "Francis", "Louis", "Rochelle", "Zoey", "Bill", "Nick", "Ellis", "Coach" };
     //Print ( a );
