@@ -4,8 +4,18 @@
 #include <string>
 #include <ctime>
 #include <cstdlib>
+#include <set>
 #include <unistd.h>
 #include <cmath>
+
+const std::vector <std::string> MAPS = {
+    "No Mercy", "Crash Course", "Death Toll", "Dead Air", "Blood Harvest", "The Sacrifice", "The Last Stand",
+    "Dead Center", "The Passing", "Dark Carnival", "Swamp Fever", "Hard Rain", "The Parish", "Cold Stream"
+};
+
+const std::set <std::string> REROLL = {
+    "Crash Course", "The Sacrifice", "The Last Stand"
+};
 
 template <class T_>
 void Print ( const std::vector<T_> & v ) {
@@ -39,15 +49,6 @@ int main ( void ) {
         team_two = 4;
     }
 
-    else if ( team_total < 8 ) {
-        srand ( time ( nullptr ) );
-        int coin = rand() % 2;
-        if ( ! coin ) {
-            team_one = std::ceil ( team_total / 2.0 );
-            team_two = std::floor ( team_total / 2.0 );
-        }
-    }
-
     std::vector<std::string> players;
     while ( team_total-- ) {
         std::string player;
@@ -65,7 +66,11 @@ int main ( void ) {
     std::cout << "Infected:" << std::endl; 
     for ( size_t i = team_one; i < team_one + team_two; i++ ) 
         std::cout << players_shuffled[i] << " ";
-    std::cout << std::endl;
+    std::cout << std::endl << std::endl;
+
+    srand( time ( nullptr ) );
+    std::string map = MAPS[rand() % MAPS . size()];
+    std::cout << "Map: " << map << std::endl;;
 
     //std::vector<std::string> a = { "Francis", "Louis", "Rochelle", "Zoey", "Bill", "Nick", "Ellis", "Coach" };
     //Print ( a );
