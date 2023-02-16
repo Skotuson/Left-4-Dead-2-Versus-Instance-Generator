@@ -38,22 +38,30 @@ std::vector<T_> Fisher_Yates ( const std::vector<T_> & cards ) {
 }
 
 int main ( void ) {
-    std::ifstream ifs ( "in.txt" );
+    std::vector<std::string> players;
+    std::string player;
     size_t team_one, team_two, team_total;
-
-    ifs >> team_one >> team_two;
-    team_total = team_one + team_two;
+    std::ifstream ifs ( "in.txt" );
+    while ( ifs >> player ) {
+        team_total++;
+        players . push_back ( player );
+    }
 
     if ( team_total > 8 ) {
         team_one = 4;
         team_two = 4;
     }
 
-    std::vector<std::string> players;
-    while ( team_total-- ) {
-        std::string player;
-        ifs >> player;
-        players . push_back ( player );
+    else if ( team_total < 8 ) {
+        srand ( time ( nullptr ) );
+        int coin = rand() % 2;
+        if ( ! coin ) {
+            team_one = std::ceil ( team_total / 2.0 );
+            team_two = std::floor ( team_total / 2.0 );
+        } else {
+            team_one = std::floor ( team_total / 2.0 );
+            team_two = std::ceil ( team_total / 2.0 );
+        }
     }
 
     std::vector<std::string> players_shuffled = Fisher_Yates ( players );
