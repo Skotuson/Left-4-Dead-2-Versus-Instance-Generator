@@ -70,7 +70,7 @@ int main ( void ) {
 
     srand( time ( nullptr ) );
     std::string map = MAPS[rand() % MAPS . size()];
-    std::cout << "Map: " << map << std::endl;;
+    std::cout << "Map: " << map << std::endl;
 
     //std::vector<std::string> a = { "Francis", "Louis", "Rochelle", "Zoey", "Bill", "Nick", "Ellis", "Coach" };
     //Print ( a );
