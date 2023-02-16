@@ -14,7 +14,7 @@ const std::vector <std::string> MAPS = {
 };
 
 const std::set <std::string> REROLL = {
-    "Crash Course", "The Sacrifice", "The Last Stand"
+    "Crash Course", "The Sacrifice", "The Last Stand", "The Passing"
 };
 
 template <class T_>
@@ -81,9 +81,9 @@ int main ( void ) {
     std::cout << "Map: " << map << std::endl;
     while ( REROLL . count ( map ) ) {
         std::cout << "Cringe Map, Rerolling..." << std::endl;
-        usleep ( 500'000 );
+        usleep ( 1'000'000 );
         map = MAPS[rand() % MAPS . size()];
-        std::cout << "Maybe you should try: " << map << std::endl;
+        std::cout << "Map: " << map << std::endl;
     }
 
     //std::vector<std::string> a = { "Francis", "Louis", "Rochelle", "Zoey", "Bill", "Nick", "Ellis", "Coach" };
