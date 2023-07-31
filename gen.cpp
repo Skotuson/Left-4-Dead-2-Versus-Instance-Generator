@@ -46,6 +46,25 @@ bool is_numeric ( const std::string & str ) {
     return true;
 }
 
+void print_set ( const std::set<std::string> & Set ) {
+    std::cout << "{ ";
+    for ( const auto & elem : Set )
+        std::cout << elem << " ";
+    std::cout << "}";
+}
+
+void print_team_score ( const std::map<std::set<std::string>, size_t> & table ) {
+    for ( const auto & elem : table ) {
+        print_set ( elem . first );
+        std::cout << " -> " << elem . second << std::endl;
+    }
+}
+
+void print_player_score ( const std::map<std::string, size_t> & table ) {
+    for ( const auto & elem : table )
+        std::cout << elem . first << " -> " << elem . second << std::endl;
+}
+
 void update_team_score ( std::map<std::set<std::string>, size_t> & table, 
                          const std::set<std::string> & elem ) 
 {
@@ -118,6 +137,9 @@ int main ( void ) {
         } 
         
     }
+
+    print_player_score ( players_score );
+    print_team_score ( teams_score );
 
     if ( team_total > 8 ) {
         team_one = 4;
