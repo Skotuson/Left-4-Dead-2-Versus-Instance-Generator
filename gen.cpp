@@ -23,13 +23,6 @@ const std::set <std::string> REROLL = {
 };
 
 template <class T_>
-void Print ( const std::vector<T_> & v ) {
-    for ( const auto & x : v ) 
-        std::cout << x << " ";
-    std::cout << std::endl;
-}
-
-template <class T_>
 std::vector<T_> Fisher_Yates ( const std::vector<T_> & cards ) {
     srand ( time ( nullptr ) );
     std::vector<T_> shuffled = cards;
@@ -109,11 +102,5 @@ int main ( int argc, char * argv [] ) {
         std::cout << "Map: " << map << std::endl;
     }
 
-    //std::vector<std::string> a = { "Francis", "Louis", "Rochelle", "Zoey", "Bill", "Nick", "Ellis", "Coach" };
-    //Print ( a );
-    //for ( size_t i = 0; i < 15; i++ ) {
-    //    usleep ( 1'000'000 );
-    //    Print<std::string> ( Fisher_Yates<std::string> ( a ) );
-    //}
     return 0;
 }
