@@ -83,22 +83,10 @@ void update_player_score ( std::map<std::string, size_t> & table,
     else it -> second += 1;
 }
 
-int main ( void ) {
-    std::vector<std::string> players;
-    std::string player;
-    size_t team_one = 4, team_two = 4, team_total = 0;
-    std::ifstream ifs ( "in.txt" );
-    while ( ifs >> player ) {
-        team_total++;
-        players . push_back ( player );
-    }
-
-    ifs . close ( );
-    ifs . open ( "score.txt" );
-
-    std::map<std::string, size_t> players_score;
-    std::map<std::set<std::string>, size_t> teams_score;
-
+bool parse_entry ( std::ifstream & ifs,
+                   std::map<std::string, size_t> & players_score,
+                   std::map<std::set<std::string>, size_t> & teams_score ) 
+{
     //Score counting
     std::string tok;
     std::set<std::string> team_a;
@@ -124,7 +112,10 @@ int main ( void ) {
         //lexed number
         else if ( is_numeric ( tok ) ) {
             //second team score
-            if ( colon ) update_team_score ( teams_score, team_b );
+            if ( colon ) {
+                update_team_score ( teams_score, team_b );
+                return true;
+            } 
             else update_team_score ( teams_score, team_a );
         }
 
@@ -134,9 +125,30 @@ int main ( void ) {
             update_player_score ( players_score, tok );
             if ( team ) team_b . insert ( tok );
             else team_a . insert ( tok );
-        } 
-        
+        }    
     }
+    return false;
+}
+
+int main ( void ) {
+    std::vector<std::string> players;
+    std::string player;
+    size_t team_one = 4, team_two = 4, team_total = 0;
+    std::ifstream ifs ( "in.txt" );
+    while ( ifs >> player ) {
+        team_total++;
+        players . push_back ( player );
+    }
+
+    ifs . close ( );
+    ifs . open ( "score.txt" );
+
+    std::map<std::string, size_t> players_score;
+    std::map<std::set<std::string>, size_t> teams_score;
+
+    while ( parse_entry ( ifs, players_score, teams_score ) );
+
+    ifs . close ( );
 
     print_player_score ( players_score );
     print_team_score ( teams_score );
