@@ -43,6 +43,12 @@ int main ( int argc, char * argv [] ) {
             db . PlayerStats ( );
             return 0;
         }
+
+        else if ( ! strcmp ( argv[1], "-update" ) ) {
+            
+            return 0;
+        }
+
         else {
             std::cout << "Invalid flag" << std::endl;
             return 1;
