@@ -111,6 +111,7 @@ bool parse_entry ( std::ifstream & ifs,
         else if ( is_numeric ( tok ) ) {
             //second team score
             size_t val = std::stoi ( tok );
+            games += val;
             if ( colon ) {
                 update_players_score ( team_b, players_score, val );
                 update_team_score ( teams_score, team_b, val );
@@ -153,8 +154,9 @@ int main ( void ) {
 
     ifs . close ( );
 
-    print_player_score ( players_score );
-    print_team_score ( teams_score );
+    //std::cout << games << std::endl;
+    //print_player_score ( players_score );
+    //print_team_score ( teams_score );
 
     if ( team_total > 8 ) {
         team_one = 4;
