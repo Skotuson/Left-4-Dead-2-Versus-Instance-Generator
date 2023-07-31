@@ -26,8 +26,9 @@ double Database::GetPlayerPercentage ( const std::string & player ) {
 }
 
 void Database::PlayerStats ( void ) {
+    std::cout << "Out of " << m_Games << " games" << std::endl; 
     for ( const auto & elem : m_Players )
-        std::cout << elem . first << " -> " << elem . second << std::endl;
+        std::cout << elem . first << " won " << elem . second << " (" << GetPlayerPercentage ( elem . first ) << "%)" << std::endl;
 }
 
 void Database::TeamStats ( void ) {

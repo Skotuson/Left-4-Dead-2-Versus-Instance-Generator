@@ -13,6 +13,9 @@ $(OUTPUT): gen.o Database.o Helper.o
 %.o: %.cpp
 	$(CXX) $(CXXFLAGS) -c -o $@ $<
 
+stat: $(OUTPUT)
+	./$(OUTPUT) -stat
+
 clean:
 	rm -f *.o $(OUTPUT)
  
