@@ -1,12 +1,13 @@
-#include <iostream>
-#include <fstream>
-#include <algorithm>
-#include <string>
-#include <ctime>
-#include <cstdlib>
 #include <set>
-#include <unistd.h>
+#include <map>
 #include <cmath>
+#include <ctime>
+#include <string>
+#include <cstdlib>
+#include <fstream>
+#include <unistd.h>
+#include <iostream>
+#include <algorithm>
 
 const std::vector <std::string> MAPS = {
     "No Mercy", "Crash Course", "Death Toll", "Dead Air", "Blood Harvest", "The Sacrifice", "The Last Stand",
@@ -47,6 +48,21 @@ int main ( void ) {
         players . push_back ( player );
     }
 
+    ifs . close ( );
+    ifs . open ( "score.txt" );
+
+    std::map<std::string, size_t> players_score;
+    std::map<std::set<std::string>, size_t> teams_score;
+
+    std::string pl;
+    std::set<std::string> team;
+    while ( ifs >> pl ) {
+        if ( pl == "x" ) {
+            
+        }
+        
+    }
+
     if ( team_total > 8 ) {
         team_one = 4;
         team_two = 4;
@@ -81,7 +97,7 @@ int main ( void ) {
     std::cout << "Map: " << map << std::endl;
     while ( REROLL . count ( map ) ) {
         std::cout << "Cringe Map, Rerolling..." << std::endl;
-        usleep ( 1'000'000 );
+        usleep ( 500'000 );
         map = MAPS[rand() % MAPS . size()];
         std::cout << "Map: " << map << std::endl;
     }
