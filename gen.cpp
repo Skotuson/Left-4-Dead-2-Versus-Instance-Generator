@@ -22,13 +22,12 @@ const std::set <std::string> REROLL = {
     "Crash Course", "The Sacrifice", "The Last Stand", "The Passing"
 };
 
-template <class T_>
-std::vector<T_> Fisher_Yates ( const std::vector<T_> & cards ) {
+std::vector<std::string> Fisher_Yates ( const std::vector<std::string> & cards ) {
     srand ( time ( nullptr ) );
-    std::vector<T_> shuffled = cards;
+    std::vector<std::string> shuffled = cards;
     for ( size_t i = 0; i < cards . size(); i++ ) {
         size_t j = rand() % ( i + 1 );
-        T_ tmp = shuffled[i];
+        std::string tmp = shuffled[i];
         shuffled[i] = shuffled[j];
         shuffled[j] = tmp;
     }
@@ -52,6 +51,7 @@ int main ( int argc, char * argv [] ) {
         std::cout << "Missing -flag" << std::endl; 
         return 1;
     }
+
     std::vector<std::string> players;
     std::string player;
     size_t team_one = 4, team_two = 4, team_total = 0;
