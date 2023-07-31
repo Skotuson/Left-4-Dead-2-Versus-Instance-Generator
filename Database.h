@@ -12,6 +12,8 @@ class Database {
                Database            ( const std::string           & filename );
         void   SetSource           ( const std::string           & filename );
         void   Load                ( void );
+        void   Update              ( void );
+        void   Save                ( void );
         size_t GetGames            ( void );
         double GetPlayerPercentage ( const std::string           & player );
         void   PlayerStats         ( void );
