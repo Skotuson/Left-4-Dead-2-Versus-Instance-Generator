@@ -1,3 +1,5 @@
+#include "Helper.h"
+
 bool is_numeric ( const std::string & str ) {
     for ( const auto & c : str )
         if ( ! isdigit ( c ) )
