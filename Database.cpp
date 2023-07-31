@@ -1,4 +1,5 @@
 #include "Database.h"
+#include "Helper.h"
 
 Database::Database ( const std::string & filename )
 : m_Source ( filename )
@@ -18,10 +19,19 @@ size_t Database::GetGames ( void ) {
     return m_Games;
 }
 
+void Database::PlayerStats ( void ) {
+
+}
+
+void Database::TeamStats ( void ) {
+    
+}
+
 bool Database::ParseEntry ( std::ifstream & ifs ) {
     std::string tok;
     std::set<std::string> team_a, 
                           team_b;
+    //Parse flags
     bool team = false,
          colon = false;
     
@@ -37,13 +47,13 @@ bool Database::ParseEntry ( std::ifstream & ifs ) {
             size_t val = std::stoi ( tok );
             m_Games += val;
             if ( colon ) {
-                //update_players_score ( team_b, players_score, val );
-                //update_team_score ( teams_score, team_b, val );
+                UpdatePlayer ( team_b, val );
+                UpdateTeam   ( team_b, val );
                 return true;
             } 
             else {
-                //update_players_score ( team_a, players_score, val );
-                //update_team_score ( teams_score, team_a, val );
+                UpdatePlayer ( team_a, val );
+                UpdateTeam   ( team_a, val );
             }
         }
 
@@ -55,7 +65,23 @@ bool Database::ParseEntry ( std::ifstream & ifs ) {
             else team_a . insert ( tok );
         }    
     }
-    
+
     //All entries were parsed
     return false;
+}
+
+void Database::UpdateTeam ( const std::set<std::string> & team, size_t val ) {
+    auto it = m_Teams . find ( team );
+    if ( it == m_Teams . end ( ) )
+        m_Teams . insert ( { team, val } );
+    else it -> second += val;
+}
+
+void Database::UpdatePlayer ( const std::set<std::string> & team, size_t val ) {
+    for ( const auto & elem : team ) {
+        auto it = m_Players . find ( elem );
+        if ( it == m_Players . end ( ) )
+            m_Players . insert ( { elem, val } );
+        else it -> second += val;
+    }
 }
