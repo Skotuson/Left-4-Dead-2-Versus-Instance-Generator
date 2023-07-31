@@ -1,3 +1,5 @@
+#include <iostream>
+
 #include "Database.h"
 #include "Helper.h"
 
@@ -11,7 +13,7 @@ void Database::SetSource ( const std::string & filename ) {
 
 void Database::Load ( void ) {
     std::ifstream ifs ( m_Source );
-
+    while ( ParseEntry ( ifs ) );
     ifs . close ( );
 }
 
@@ -19,12 +21,20 @@ size_t Database::GetGames ( void ) {
     return m_Games;
 }
 
-void Database::PlayerStats ( void ) {
+double Database::GetPlayerPercentage ( const std::string & player ) {
+    return ( m_Players[player] / (double) m_Games ) * 100.0;
+}
 
+void Database::PlayerStats ( void ) {
+    for ( const auto & elem : m_Players )
+        std::cout << elem . first << " -> " << elem . second << std::endl;
 }
 
 void Database::TeamStats ( void ) {
-    
+    for ( const auto & elem : m_Teams ) {
+        print_set ( elem . first );
+        std::cout << " -> " << elem . second << std::endl;
+    }
 }
 
 bool Database::ParseEntry ( std::ifstream & ifs ) {
