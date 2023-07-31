@@ -46,6 +46,24 @@ bool is_numeric ( const std::string & str ) {
     return true;
 }
 
+void update_team_score ( std::map<std::set<std::string>, size_t> & table, 
+                         const std::set<std::string> & elem ) 
+{
+    auto it = table . find ( elem );
+    if ( it == table . end ( ) )
+        table . insert ( { elem, 1 } );
+    else it -> second += 1;
+}
+
+void update_player_score ( std::map<std::string, size_t> & table, 
+                           const std::string & elem ) 
+{
+    auto it = table . find ( elem );
+    if ( it == table . end ( ) )
+        table . insert ( { elem, 1 } );
+    else it -> second += 1;
+}
+
 int main ( void ) {
     std::vector<std::string> players;
     std::string player;
@@ -87,13 +105,14 @@ int main ( void ) {
         //lexed number
         else if ( is_numeric ( tok ) ) {
             //second team score
-            if ( colon );
-            else;
+            if ( colon ) update_team_score ( teams_score, team_b );
+            else update_team_score ( teams_score, team_a );
         }
 
         else if ( tok == ":" ) colon = true;
 
         else {
+            update_player_score ( players_score, tok );
             if ( team ) team_b . insert ( tok );
             else team_a . insert ( tok );
         } 
