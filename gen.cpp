@@ -3,6 +3,7 @@
 #include <cmath>
 #include <ctime>
 #include <string>
+#include <cctype>
 #include <cstdlib>
 #include <fstream>
 #include <unistd.h>
@@ -38,6 +39,13 @@ std::vector<T_> Fisher_Yates ( const std::vector<T_> & cards ) {
     return shuffled;
 }
 
+bool is_numeric ( const std::string & str ) {
+    for ( const auto & c : str )
+        if ( ! isdigit ( c ) )
+            return false;
+    return true;
+}
+
 int main ( void ) {
     std::vector<std::string> players;
     std::string player;
@@ -54,12 +62,36 @@ int main ( void ) {
     std::map<std::string, size_t> players_score;
     std::map<std::set<std::string>, size_t> teams_score;
 
-    std::string pl;
+    //Score counting
+    std::string tok;
     std::set<std::string> team;
-    while ( ifs >> pl ) {
-        if ( pl == "x" ) {
-            
+    bool colon = false;
+    while ( ifs >> tok ) {
+        //second team starts
+        if ( tok == "x" ) {
+            for ( const auto & x : team )
+                std::cout << x << " ";
+            std::cout << std::endl;
+            team . clear ( );
         }
+        
+        //teams have been parsed
+        else if ( tok == "-" ) {
+            for ( const auto & x : team )
+                std::cout << x << " ";
+            std::cout << std::endl;
+        }
+
+        //lexed number
+        else if ( is_numeric ( tok ) ) {
+            //second team score
+            if ( colon );
+            else;
+        }
+
+        else if ( tok == ":" ) colon = true;
+
+        else team . insert ( tok );
         
     }
 
@@ -97,7 +129,7 @@ int main ( void ) {
     std::cout << "Map: " << map << std::endl;
     while ( REROLL . count ( map ) ) {
         std::cout << "Cringe Map, Rerolling..." << std::endl;
-        usleep ( 500'000 );
+        usleep ( 750'000 );
         map = MAPS[rand() % MAPS . size()];
         std::cout << "Map: " << map << std::endl;
     }
