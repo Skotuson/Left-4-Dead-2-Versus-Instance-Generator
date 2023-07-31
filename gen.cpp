@@ -179,12 +179,12 @@ int main ( void ) {
 
     std::cout << "Survivors:" << std::endl; 
     for ( size_t i = 0; i < team_one; i++ ) 
-        std::cout << players_shuffled[i] << " ";
+        std::cout << players_shuffled[i] << " [" << ( players_score[players_shuffled[i]] / (double ) games ) * 100.0 << "%]" << " ";
     std::cout << std::endl;
 
     std::cout << "Infected:" << std::endl; 
     for ( size_t i = team_one; i < team_one + team_two; i++ ) 
-        std::cout << players_shuffled[i] << " ";
+        std::cout << players_shuffled[i] << " [" << ( players_score[players_shuffled[i]] / (double ) games ) * 100.0 << "%]" << " ";
     std::cout << std::endl << std::endl;
 
     srand( time ( nullptr ) );
