@@ -64,20 +64,22 @@ int main ( void ) {
 
     //Score counting
     std::string tok;
-    std::set<std::string> team;
+    std::set<std::string> team_a;
+    std::set<std::string> team_b;
+    bool team = false;
     bool colon = false;
     while ( ifs >> tok ) {
         //second team starts
         if ( tok == "x" ) {
-            for ( const auto & x : team )
+            for ( const auto & x : team_a )
                 std::cout << x << " ";
             std::cout << std::endl;
-            team . clear ( );
+            team = true;
         }
         
         //teams have been parsed
         else if ( tok == "-" ) {
-            for ( const auto & x : team )
+            for ( const auto & x : team_b )
                 std::cout << x << " ";
             std::cout << std::endl;
         }
@@ -91,7 +93,10 @@ int main ( void ) {
 
         else if ( tok == ":" ) colon = true;
 
-        else team . insert ( tok );
+        else {
+            if ( team ) team_b . insert ( tok );
+            else team_a . insert ( tok );
+        } 
         
     }
 
