@@ -66,21 +66,23 @@ void print_player_score ( const std::map<std::string, size_t> & table ) {
 }
 
 void update_team_score ( std::map<std::set<std::string>, size_t> & table, 
-                         const std::set<std::string> & elem ) 
+                         const std::set<std::string> & elem,
+                         size_t amount ) 
 {
     auto it = table . find ( elem );
     if ( it == table . end ( ) )
-        table . insert ( { elem, 1 } );
-    else it -> second += 1;
+        table . insert ( { elem, amount } );
+    else it -> second += amount;
 }
 
 void update_player_score ( std::map<std::string, size_t> & table, 
-                           const std::string & elem ) 
+                           const std::string & elem,
+                           size_t amount ) 
 {
     auto it = table . find ( elem );
     if ( it == table . end ( ) )
-        table . insert ( { elem, 1 } );
-    else it -> second += 1;
+        table . insert ( { elem, amount } );
+    else it -> second += amount;
 }
 
 bool parse_entry ( std::ifstream & ifs,
@@ -95,34 +97,27 @@ bool parse_entry ( std::ifstream & ifs,
     bool colon = false;
     while ( ifs >> tok ) {
         //second team starts
-        if ( tok == "x" ) {
-            for ( const auto & x : team_a )
-                std::cout << x << " ";
-            std::cout << std::endl;
+        if ( tok == "x" )
             team = true;
-        }
         
         //teams have been parsed
-        else if ( tok == "-" ) {
-            for ( const auto & x : team_b )
-                std::cout << x << " ";
-            std::cout << std::endl;
+        else if ( tok == "-" ) {   
         }
 
         //lexed number
         else if ( is_numeric ( tok ) ) {
             //second team score
+            size_t val = std::stoi ( tok );
             if ( colon ) {
-                update_team_score ( teams_score, team_b );
+                update_team_score ( teams_score, team_b, val );
                 return true;
             } 
-            else update_team_score ( teams_score, team_a );
+            else update_team_score ( teams_score, team_a, val );
         }
 
         else if ( tok == ":" ) colon = true;
 
         else {
-            update_player_score ( players_score, tok );
             if ( team ) team_b . insert ( tok );
             else team_a . insert ( tok );
         }    
