@@ -4,6 +4,7 @@
 #include <ctime>
 #include <string>
 #include <cctype>
+#include <cstring>
 #include <cstdlib>
 #include <fstream>
 #include <unistd.h>
@@ -133,7 +134,20 @@ bool parse_entry ( std::ifstream & ifs,
     return false;
 }
 
-int main ( void ) {
+int main ( int argc, char * argv [] ) {
+    if ( argc > 1 && argc < 3 ) {
+        if ( ! strcmp ( argv[1], "-stat" ) ) {
+            
+        }
+        else {
+            std::cout << "Invalid flag" << std::endl;
+            return 1;
+        }
+        return 0;
+    } else if ( argc >= 2 ) {
+        std::cout << "Missing -flag" << std::endl; 
+        return 1;
+    }
     std::vector<std::string> players;
     std::string player;
     size_t team_one = 4, team_two = 4, team_total = 0;
@@ -144,14 +158,12 @@ int main ( void ) {
     }
 
     ifs . close ( );
-    ifs . open ( "score.txt" );
 
+    ifs . open ( "score.txt" );
     std::map<std::string, size_t> players_score;
     std::map<std::set<std::string>, size_t> teams_score;
-
     size_t games = 0;
     while ( parse_entry ( ifs, games, players_score, teams_score ) );
-
     ifs . close ( );
 
     //std::cout << games << std::endl;
