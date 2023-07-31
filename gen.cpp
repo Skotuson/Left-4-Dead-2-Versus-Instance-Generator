@@ -75,17 +75,20 @@ void update_team_score ( std::map<std::set<std::string>, size_t> & table,
     else it -> second += amount;
 }
 
-void update_player_score ( std::map<std::string, size_t> & table, 
-                           const std::string & elem,
+void update_players_score ( std::set<std::string> & players,
+                           std::map<std::string, size_t> & table, 
                            size_t amount ) 
 {
-    auto it = table . find ( elem );
-    if ( it == table . end ( ) )
-        table . insert ( { elem, amount } );
-    else it -> second += amount;
+    for ( const auto & elem : players ) {
+        auto it = table . find ( elem );
+        if ( it == table . end ( ) )
+            table . insert ( { elem, amount } );
+        else it -> second += amount;
+    }
 }
 
 bool parse_entry ( std::ifstream & ifs,
+                   size_t                        & games,
                    std::map<std::string, size_t> & players_score,
                    std::map<std::set<std::string>, size_t> & teams_score ) 
 {
@@ -109,10 +112,14 @@ bool parse_entry ( std::ifstream & ifs,
             //second team score
             size_t val = std::stoi ( tok );
             if ( colon ) {
+                update_players_score ( team_b, players_score, val );
                 update_team_score ( teams_score, team_b, val );
                 return true;
             } 
-            else update_team_score ( teams_score, team_a, val );
+            else {
+                update_players_score ( team_a, players_score, val );
+                update_team_score ( teams_score, team_a, val );
+            }
         }
 
         else if ( tok == ":" ) colon = true;
@@ -141,7 +148,8 @@ int main ( void ) {
     std::map<std::string, size_t> players_score;
     std::map<std::set<std::string>, size_t> teams_score;
 
-    while ( parse_entry ( ifs, players_score, teams_score ) );
+    size_t games = 0;
+    while ( parse_entry ( ifs, games, players_score, teams_score ) );
 
     ifs . close ( );
 
