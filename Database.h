@@ -18,8 +18,9 @@ class Database {
         void   Save                ( void );
         size_t GetGames            ( void );
         double GetPlayerPercentage ( const std::string           & player );
-        void   PlayerStats         ( void );
-        void   TeamStats           ( void );
+        void   PrintPlayerStats    ( void );
+        void   PrintTeamStats      ( void );
+        void   PrintMatches        ( void );
 
     private:
         bool   ParseEntry          ( std::ifstream               & ifs );

@@ -29,16 +29,25 @@ double Database::GetPlayerPercentage ( const std::string & player ) {
     return ( m_Players[player] / (double) m_Games ) * 100.0;
 }
 
-void Database::PlayerStats ( void ) {
+void Database::PrintPlayerStats ( void ) {
     std::cout << "Out of " << m_Games << " games" << std::endl; 
     for ( const auto & elem : m_Players )
         std::cout << elem . first << " won " << elem . second << " (" << GetPlayerPercentage ( elem . first ) << "%)" << std::endl;
 }
 
-void Database::TeamStats ( void ) {
+void Database::PrintTeamStats ( void ) {
     for ( const auto & elem : m_Teams ) {
         print_set ( elem . first );
         std::cout << " -> " << elem . second << std::endl;
+    }
+}
+
+void Database::PrintMatches ( void ) {
+    for ( const auto & elem : m_Matches ) {
+        print_set ( elem . first );
+        std::cout << " against ";
+        print_set ( elem . second );
+        std::cout << std::endl;
     }
 }
 

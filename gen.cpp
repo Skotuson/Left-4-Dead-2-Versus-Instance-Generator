@@ -38,9 +38,11 @@ int main ( int argc, char * argv [] ) {
     Database db ( "score.txt" );
     db . Load ( );
 
+    db . PrintMatches ( );
+
     if ( argc > 1 && argc < 3 ) {
         if ( ! strcmp ( argv[1], "-stat" ) ) {
-            db . PlayerStats ( );
+            db . PrintPlayerStats ( );
             return 0;
         }
 
