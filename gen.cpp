@@ -12,6 +12,7 @@
 #include <algorithm>
 
 #include "Database.h"
+#include "Helper.h"
 
 const std::vector <std::string> MAPS = {
     "No Mercy", "Crash Course", "Death Toll", "Dead Air", "Blood Harvest", "The Sacrifice", "The Last Stand",
@@ -21,18 +22,6 @@ const std::vector <std::string> MAPS = {
 const std::set <std::string> REROLL = {
     "Crash Course", "The Sacrifice", "The Last Stand", "The Passing"
 };
-
-std::vector<std::string> Fisher_Yates ( const std::vector<std::string> & cards ) {
-    srand ( time ( nullptr ) );
-    std::vector<std::string> shuffled = cards;
-    for ( size_t i = 0; i < cards . size(); i++ ) {
-        size_t j = rand() % ( i + 1 );
-        std::string tmp = shuffled[i];
-        shuffled[i] = shuffled[j];
-        shuffled[j] = tmp;
-    }
-    return shuffled;
-}
 
 int main ( int argc, char * argv [] ) {
     Database db ( "score.txt" );

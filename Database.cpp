@@ -1,7 +1,7 @@
 #include <iostream>
 
-#include "Database.h"
 #include "Helper.h"
+#include "Database.h"
 
 Database::Database ( const std::string & filename )
 : m_Source ( filename )
