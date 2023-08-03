@@ -46,8 +46,8 @@ void Database::PrintMatches ( void ) {
     for ( const auto & elem : m_Matches ) {
         print_set ( elem . first );
         std::cout << " against ";
-        print_set ( elem . second );
-        std::cout << std::endl;
+        print_set ( elem . second . first );
+        std::cout << " " << elem . second . second . first << " : " << elem . second . second . second << std::endl;
     }
 }
 

@@ -7,7 +7,8 @@
 #include <fstream>
 #include <cstdlib>
 
-using Team = std::set<std::string>;
+using Team  = std::set<std::string>;
+using Score = std::pair<size_t, size_t>;
 
 class Database {
     public:
@@ -29,11 +30,11 @@ class Database {
         void   UpdatePlayer        ( const std::set<std::string> & team,
                                      size_t                        val );
 
-        std::string                    m_Source;
-        std::map<std::string, size_t>  m_Players;
-        std::map<Team, size_t>         m_Teams;
-        std::multimap<Team, Team>      m_Matches;
-        size_t                         m_Games    = 0;
+        std::string                                 m_Source;
+        std::map<std::string, size_t>               m_Players;
+        std::map<Team, size_t>                      m_Teams;
+        std::multimap<Team, std::pair<Team, Score>> m_Matches;
+        size_t                                      m_Games    = 0;
 };
 
 #endif
