@@ -17,6 +17,10 @@ void Database::Load ( void ) {
     ifs . close ( );
 }
 
+void Database::Save ( void ) {
+
+}
+
 size_t Database::GetGames ( void ) {
     return m_Games;
 }
@@ -81,14 +85,14 @@ bool Database::ParseEntry ( std::ifstream & ifs ) {
     return false;
 }
 
-void Database::UpdateTeam ( const std::set<std::string> & team, size_t val ) {
+void Database::UpdateTeam ( const Team & team, size_t val ) {
     auto it = m_Teams . find ( team );
     if ( it == m_Teams . end ( ) )
         m_Teams . insert ( { team, val } );
     else it -> second += val;
 }
 
-void Database::UpdatePlayer ( const std::set<std::string> & team, size_t val ) {
+void Database::UpdatePlayer ( const Team & team, size_t val ) {
     for ( const auto & elem : team ) {
         auto it = m_Players . find ( elem );
         if ( it == m_Players . end ( ) )

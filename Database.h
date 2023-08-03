@@ -7,12 +7,14 @@
 #include <fstream>
 #include <cstdlib>
 
+using Team = std::set<std::string>;
+
 class Database {
     public:
                Database            ( const std::string           & filename );
         void   SetSource           ( const std::string           & filename );
+        //Load the data from file
         void   Load                ( void );
-        void   Update              ( void );
         void   Save                ( void );
         size_t GetGames            ( void );
         double GetPlayerPercentage ( const std::string           & player );
@@ -26,10 +28,11 @@ class Database {
         void   UpdatePlayer        ( const std::set<std::string> & team,
                                      size_t                        val );
 
-        std::string                             m_Source;
-        std::map<std::string, size_t>           m_Players;
-        std::map<std::set<std::string>, size_t> m_Teams;
-        size_t                                  m_Games    = 0;
+        std::string                    m_Source;
+        std::map<std::string, size_t>  m_Players;
+        std::map<Team, size_t>         m_Teams;
+        std::multimap<Team, Team>      m_Matches;
+        size_t                         m_Games    = 0;
 };
 
 #endif
