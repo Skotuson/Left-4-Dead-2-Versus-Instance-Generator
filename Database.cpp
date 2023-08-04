@@ -55,6 +55,8 @@ bool Database::ParseEntry ( std::ifstream & ifs ) {
     std::string tok;
     std::set<std::string> team_a, 
                           team_b;
+
+    std::pair<Team, std::pair<Team, Score>> match;
     //Parse flags
     bool team = false,
          colon = false;
@@ -73,9 +75,14 @@ bool Database::ParseEntry ( std::ifstream & ifs ) {
             if ( colon ) {
                 UpdatePlayer ( team_b, val );
                 UpdateTeam   ( team_b, val );
+                match . second . second . second = val;
+                match . second . first = team_b;
+                match . first = team_a;
+                m_Matches . insert ( match );
                 return true;
             } 
             else {
+                match . second . second . first = val;
                 UpdatePlayer ( team_a, val );
                 UpdateTeam   ( team_a, val );
             }
