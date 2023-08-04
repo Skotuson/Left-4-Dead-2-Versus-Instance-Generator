@@ -12,6 +12,7 @@
 #include <algorithm>
 
 #include "Database.h"
+#include "Helper.h"
 
 const std::vector <std::string> MAPS = {
     "No Mercy", "Crash Course", "Death Toll", "Dead Air", "Blood Harvest", "The Sacrifice", "The Last Stand",
@@ -22,26 +23,21 @@ const std::set <std::string> REROLL = {
     "Crash Course", "The Sacrifice", "The Last Stand", "The Passing"
 };
 
-std::vector<std::string> Fisher_Yates ( const std::vector<std::string> & cards ) {
-    srand ( time ( nullptr ) );
-    std::vector<std::string> shuffled = cards;
-    for ( size_t i = 0; i < cards . size(); i++ ) {
-        size_t j = rand() % ( i + 1 );
-        std::string tmp = shuffled[i];
-        shuffled[i] = shuffled[j];
-        shuffled[j] = tmp;
-    }
-    return shuffled;
-}
-
 int main ( int argc, char * argv [] ) {
-    Database db ( "score.txt" );
+    Database db ( "save.txt" );
     db . Load ( );
 
     if ( argc > 1 && argc < 3 ) {
         if ( ! strcmp ( argv[1], "-stat" ) ) {
-            
+            db . PrintPlayerStats ( );
+            return 0;
         }
+
+        else if ( ! strcmp ( argv[1], "-update" ) ) {
+            
+            return 0;
+        }
+
         else {
             std::cout << "Invalid flag" << std::endl;
             return 1;
@@ -51,6 +47,8 @@ int main ( int argc, char * argv [] ) {
         std::cout << "Missing -flag" << std::endl; 
         return 1;
     }
+
+    db . Save ( );
 
     std::vector<std::string> players;
     std::string player;

@@ -1,7 +1,7 @@
 #include <iostream>
 
-#include "Database.h"
 #include "Helper.h"
+#include "Database.h"
 
 Database::Database ( const std::string & filename )
 : m_Source ( filename )
@@ -17,6 +17,12 @@ void Database::Load ( void ) {
     ifs . close ( );
 }
 
+void Database::Save ( void ) {
+    std::ofstream ofs ( "save.txt" );
+    PrintMatches ( ofs );
+    ofs . close ( );
+}
+
 size_t Database::GetGames ( void ) {
     return m_Games;
 }
@@ -25,15 +31,25 @@ double Database::GetPlayerPercentage ( const std::string & player ) {
     return ( m_Players[player] / (double) m_Games ) * 100.0;
 }
 
-void Database::PlayerStats ( void ) {
+void Database::PrintPlayerStats ( void ) {
+    std::cout << "Out of " << m_Games << " games" << std::endl; 
     for ( const auto & elem : m_Players )
-        std::cout << elem . first << " -> " << elem . second << std::endl;
+        std::cout << elem . first << " won " << elem . second << " (" << GetPlayerPercentage ( elem . first ) << "%)" << std::endl;
 }
 
-void Database::TeamStats ( void ) {
+void Database::PrintTeamStats ( void ) {
     for ( const auto & elem : m_Teams ) {
         print_set ( elem . first );
         std::cout << " -> " << elem . second << std::endl;
+    }
+}
+
+void Database::PrintMatches ( std::ostream & os ) {
+    for ( const auto & elem : m_Matches ) {
+        print_set ( elem . first, false, os );
+        os << "x ";
+        print_set ( elem . second . first, false, os );
+        os << elem . second . second . first << " : " << elem . second . second . second << std::endl;
     }
 }
 
@@ -41,6 +57,8 @@ bool Database::ParseEntry ( std::ifstream & ifs ) {
     std::string tok;
     std::set<std::string> team_a, 
                           team_b;
+
+    std::pair<Team, std::pair<Team, Score>> match;
     //Parse flags
     bool team = false,
          colon = false;
@@ -59,9 +77,14 @@ bool Database::ParseEntry ( std::ifstream & ifs ) {
             if ( colon ) {
                 UpdatePlayer ( team_b, val );
                 UpdateTeam   ( team_b, val );
+                match . second . second . second = val;
+                match . second . first = team_b;
+                match . first = team_a;
+                m_Matches . insert ( match );
                 return true;
             } 
             else {
+                match . second . second . first = val;
                 UpdatePlayer ( team_a, val );
                 UpdateTeam   ( team_a, val );
             }
@@ -80,14 +103,14 @@ bool Database::ParseEntry ( std::ifstream & ifs ) {
     return false;
 }
 
-void Database::UpdateTeam ( const std::set<std::string> & team, size_t val ) {
+void Database::UpdateTeam ( const Team & team, size_t val ) {
     auto it = m_Teams . find ( team );
     if ( it == m_Teams . end ( ) )
         m_Teams . insert ( { team, val } );
     else it -> second += val;
 }
 
-void Database::UpdatePlayer ( const std::set<std::string> & team, size_t val ) {
+void Database::UpdatePlayer ( const Team & team, size_t val ) {
     for ( const auto & elem : team ) {
         auto it = m_Players . find ( elem );
         if ( it == m_Players . end ( ) )
