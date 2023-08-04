@@ -21,7 +21,7 @@ class Database {
         double GetPlayerPercentage ( const std::string           & player );
         void   PrintPlayerStats    ( void );
         void   PrintTeamStats      ( void );
-        void   PrintMatches        ( void );
+        void   PrintMatches        ( std::ostream                & os = std::cout );
 
     private:
         bool   ParseEntry          ( std::ifstream               & ifs );

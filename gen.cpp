@@ -24,10 +24,8 @@ const std::set <std::string> REROLL = {
 };
 
 int main ( int argc, char * argv [] ) {
-    Database db ( "score.txt" );
+    Database db ( "save.txt" );
     db . Load ( );
-
-    db . PrintMatches ( );
 
     if ( argc > 1 && argc < 3 ) {
         if ( ! strcmp ( argv[1], "-stat" ) ) {
@@ -49,6 +47,8 @@ int main ( int argc, char * argv [] ) {
         std::cout << "Missing -flag" << std::endl; 
         return 1;
     }
+
+    db . Save ( );
 
     std::vector<std::string> players;
     std::string player;

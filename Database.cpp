@@ -18,7 +18,9 @@ void Database::Load ( void ) {
 }
 
 void Database::Save ( void ) {
-
+    std::ofstream ofs ( "save.txt" );
+    PrintMatches ( ofs );
+    ofs . close ( );
 }
 
 size_t Database::GetGames ( void ) {
@@ -42,12 +44,12 @@ void Database::PrintTeamStats ( void ) {
     }
 }
 
-void Database::PrintMatches ( void ) {
+void Database::PrintMatches ( std::ostream & os ) {
     for ( const auto & elem : m_Matches ) {
-        print_set ( elem . first );
-        std::cout << " against ";
-        print_set ( elem . second . first );
-        std::cout << " " << elem . second . second . first << " : " << elem . second . second . second << std::endl;
+        print_set ( elem . first, false, os );
+        os << "x ";
+        print_set ( elem . second . first, false, os );
+        os << elem . second . second . first << " : " << elem . second . second . second << std::endl;
     }
 }
 

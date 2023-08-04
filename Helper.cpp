@@ -7,11 +7,13 @@ bool is_numeric ( const std::string & str ) {
     return true;
 }
 
-void print_set ( const std::set<std::string> & Set ) {
-    std::cout << "{ ";
+void print_set ( const std::set<std::string> & Set, bool brackets,  std::ostream & os ) {
+    if ( brackets )
+        os << "{ ";
     for ( const auto & elem : Set )
-        std::cout << elem << " ";
-    std::cout << "}";
+        os << elem << " ";
+    if ( brackets )
+        os << "}";
 }
 
 std::vector<std::string> Fisher_Yates ( const std::vector<std::string> & cards ) {
