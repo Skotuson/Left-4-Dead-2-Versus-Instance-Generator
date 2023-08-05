@@ -86,6 +86,8 @@ bool Database::ParseEntry ( std::istream & is ) {
                 std::set<Team> teams = { team_a, team_b };
                 match . first = teams;
                 match . second . second = val;
+                if ( team_a > team_b )
+                    std::swap ( match . second . first, match . second . second );
                 m_Matches . insert ( match );
                 return true;
             } 
