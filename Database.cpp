@@ -50,10 +50,12 @@ void Database::PrintTeamStats ( void ) {
 
 void Database::PrintMatches ( std::ostream & os ) {
     for ( const auto & elem : m_Matches ) {
-        print_set ( elem . first, false, os );
+        auto it = elem . first . begin ( );
+        print_set ( *it, false, os );
+        std::advance ( it, 1 );
         os << "x ";
-        print_set ( elem . second . first, false, os );
-        os << elem . second . second . first << " : " << elem . second . second . second << std::endl;
+        print_set ( *it, false, os );
+        os << elem . second . first << " : " << elem . second . second << std::endl;
     }
 }
 
@@ -62,7 +64,7 @@ bool Database::ParseEntry ( std::istream & is ) {
     std::set<std::string> team_a, 
                           team_b;
 
-    std::pair<Team, std::pair<Team, Score>> match;
+    std::pair<std::set<Team>, Score> match;
     //Parse flags
     bool team = false,
          colon = false;
@@ -81,14 +83,14 @@ bool Database::ParseEntry ( std::istream & is ) {
             if ( colon ) {
                 UpdatePlayer ( team_b, val );
                 UpdateTeam   ( team_b, val );
-                match . second . second . second = val;
-                match . second . first = team_b;
-                match . first = team_a;
+                std::set<Team> teams = { team_a, team_b };
+                match . first = teams;
+                match . second . second = val;
                 m_Matches . insert ( match );
                 return true;
             } 
             else {
-                match . second . second . first = val;
+                match . second . first = val;
                 UpdatePlayer ( team_a, val );
                 UpdateTeam   ( team_a, val );
             }
