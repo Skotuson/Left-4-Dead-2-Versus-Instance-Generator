@@ -34,7 +34,8 @@ int main ( int argc, char * argv [] ) {
         }
 
         else if ( ! strcmp ( argv[1], "-update" ) ) {
-            
+            db . Add ( std::cin );
+            db . Save ( );
             return 0;
         }
 

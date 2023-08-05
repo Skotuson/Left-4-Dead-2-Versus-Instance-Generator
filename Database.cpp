@@ -11,6 +11,10 @@ void Database::SetSource ( const std::string & filename ) {
     m_Source = filename;
 }
 
+void Database::Add ( std::istream & is ) {
+    ParseEntry ( is );
+}
+
 void Database::Load ( void ) {
     std::ifstream ifs ( m_Source );
     while ( ParseEntry ( ifs ) );
@@ -53,7 +57,7 @@ void Database::PrintMatches ( std::ostream & os ) {
     }
 }
 
-bool Database::ParseEntry ( std::ifstream & ifs ) {
+bool Database::ParseEntry ( std::istream & is ) {
     std::string tok;
     std::set<std::string> team_a, 
                           team_b;
@@ -63,7 +67,7 @@ bool Database::ParseEntry ( std::ifstream & ifs ) {
     bool team = false,
          colon = false;
     
-    while ( ifs >> tok ) {
+    while ( is >> tok ) {
         //Teams delimiter parsed
         if ( tok == "x" ) team = true;
         //Teams and score delimiter parsed

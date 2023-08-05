@@ -16,6 +16,9 @@ $(OUTPUT): gen.o Database.o Helper.o
 stat: $(OUTPUT)
 	./$(OUTPUT) -stat
 
+update: $(OUTPUT)
+	./$(OUTPUT) -update
+
 clean:
 	rm -f *.o $(OUTPUT)
  
