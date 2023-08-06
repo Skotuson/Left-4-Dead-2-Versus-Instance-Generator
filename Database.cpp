@@ -89,7 +89,12 @@ bool Database::ParseEntry ( std::istream & is ) {
                 //In case the first team is lexicographically greater, swap the score.
                 if ( team_a > team_b )
                     std::swap ( match . second . first, match . second . second );
-                m_Matches . insert ( match );
+                auto it = m_Matches . find ( match . first );
+                if ( it != m_Matches . end ( ) ) {
+                    it -> second . first  += match . second . first;
+                    it -> second . second += match . second . second;
+                }
+                else m_Matches . insert ( match );
                 return true;
             } 
             else {
