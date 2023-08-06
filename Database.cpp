@@ -55,7 +55,7 @@ void Database::PrintMatches ( std::ostream & os ) {
         std::advance ( it, 1 );
         os << "x ";
         print_set ( *it, false, os );
-        os << elem . second . first << " : " << elem . second . second << std::endl;
+        os << "- " << elem . second . first << " : " << elem . second . second << std::endl;
     }
 }
 
