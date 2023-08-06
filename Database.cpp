@@ -11,6 +11,10 @@ void Database::SetSource ( const std::string & filename ) {
     m_Source = filename;
 }
 
+void Database::Add ( std::istream & is ) {
+    ParseEntry ( is );
+}
+
 void Database::Load ( void ) {
     std::ifstream ifs ( m_Source );
     while ( ParseEntry ( ifs ) );
@@ -46,24 +50,26 @@ void Database::PrintTeamStats ( void ) {
 
 void Database::PrintMatches ( std::ostream & os ) {
     for ( const auto & elem : m_Matches ) {
-        print_set ( elem . first, false, os );
+        auto it = elem . first . begin ( );
+        print_set ( *it, false, os );
+        std::advance ( it, 1 );
         os << "x ";
-        print_set ( elem . second . first, false, os );
-        os << elem . second . second . first << " : " << elem . second . second . second << std::endl;
+        print_set ( *it, false, os );
+        os << "- " << elem . second . first << " : " << elem . second . second << std::endl;
     }
 }
 
-bool Database::ParseEntry ( std::ifstream & ifs ) {
+bool Database::ParseEntry ( std::istream & is ) {
     std::string tok;
     std::set<std::string> team_a, 
                           team_b;
 
-    std::pair<Team, std::pair<Team, Score>> match;
+    std::pair<std::set<Team>, Score> match;
     //Parse flags
     bool team = false,
          colon = false;
     
-    while ( ifs >> tok ) {
+    while ( is >> tok ) {
         //Teams delimiter parsed
         if ( tok == "x" ) team = true;
         //Teams and score delimiter parsed
@@ -77,14 +83,22 @@ bool Database::ParseEntry ( std::ifstream & ifs ) {
             if ( colon ) {
                 UpdatePlayer ( team_b, val );
                 UpdateTeam   ( team_b, val );
-                match . second . second . second = val;
-                match . second . first = team_b;
-                match . first = team_a;
-                m_Matches . insert ( match );
+                std::set<Team> teams = { team_a, team_b };
+                match . first = teams;
+                match . second . second = val;
+                //In case the first team is lexicographically greater, swap the score.
+                if ( team_a > team_b )
+                    std::swap ( match . second . first, match . second . second );
+                auto it = m_Matches . find ( match . first );
+                if ( it != m_Matches . end ( ) ) {
+                    it -> second . first  += match . second . first;
+                    it -> second . second += match . second . second;
+                }
+                else m_Matches . insert ( match );
                 return true;
             } 
             else {
-                match . second . second . first = val;
+                match . second . first = val;
                 UpdatePlayer ( team_a, val );
                 UpdateTeam   ( team_a, val );
             }

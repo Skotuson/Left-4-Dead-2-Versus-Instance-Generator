@@ -16,6 +16,7 @@ class Database {
         void   SetSource           ( const std::string           & filename );
         //Load the data from file
         void   Load                ( void );
+        void   Add                 ( std::istream                & is );
         void   Save                ( void );
         size_t GetGames            ( void );
         double GetPlayerPercentage ( const std::string           & player );
@@ -24,17 +25,17 @@ class Database {
         void   PrintMatches        ( std::ostream                & os = std::cout );
 
     private:
-        bool   ParseEntry          ( std::ifstream               & ifs );
+        bool   ParseEntry          ( std::istream                & is );
         void   UpdateTeam          ( const std::set<std::string> & team,
                                      size_t                        val );
         void   UpdatePlayer        ( const std::set<std::string> & team,
                                      size_t                        val );
 
-        std::string                                 m_Source;
-        std::map<std::string, size_t>               m_Players;
-        std::map<Team, size_t>                      m_Teams;
-        std::multimap<Team, std::pair<Team, Score>> m_Matches;
-        size_t                                      m_Games    = 0;
+        std::string                           m_Source;
+        std::map<std::string, size_t>         m_Players;
+        std::map<Team, size_t>                m_Teams;
+        std::multimap<std::set<Team>, Score>  m_Matches;
+        size_t                                m_Games    = 0;
 };
 
 #endif
