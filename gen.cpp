@@ -9,6 +9,7 @@
 #include <fstream>
 #include <unistd.h>
 #include <iostream>
+#include <iomanip>
 #include <algorithm>
 
 #include "Database.h"
@@ -83,12 +84,12 @@ int main ( int argc, char * argv [] ) {
 
     std::cout << "Survivors:" << std::endl; 
     for ( size_t i = 0; i < team_one; i++ ) 
-        std::cout << players_shuffled[i] << " [" << db . GetPlayerPercentage ( players_shuffled[i] ) << "%]" << " ";
+        std::cout << players_shuffled[i] << std::setprecision ( 3 ) << " [" << db . GetPlayerPercentage ( players_shuffled[i] ) << "%]" << " ";
     std::cout << std::endl;
 
     std::cout << "Infected:" << std::endl; 
     for ( size_t i = team_one; i < team_one + team_two; i++ ) 
-        std::cout << players_shuffled[i] << " [" << db . GetPlayerPercentage ( players_shuffled[i] ) << "%]" << " ";
+        std::cout << players_shuffled[i] << std::setprecision ( 3 ) << " [" << db . GetPlayerPercentage ( players_shuffled[i] ) << "%]" << " ";
     std::cout << std::endl << std::endl;
 
     srand( time ( nullptr ) );

@@ -1,3 +1,4 @@
+#include <iomanip>
 #include <iostream>
 
 #include "Helper.h"
@@ -38,7 +39,7 @@ double Database::GetPlayerPercentage ( const std::string & player ) {
 void Database::PrintPlayerStats ( void ) {
     std::cout << "Out of " << m_Games << " games" << std::endl; 
     for ( const auto & elem : m_Players )
-        std::cout << elem . first << " won " << elem . second << " (" << GetPlayerPercentage ( elem . first ) << "%)" << std::endl;
+        std::cout << elem . first << " won " << std::setprecision ( 3 ) << elem . second << " (" << GetPlayerPercentage ( elem . first ) << "%)" << std::endl;
 }
 
 void Database::PrintTeamStats ( void ) {
