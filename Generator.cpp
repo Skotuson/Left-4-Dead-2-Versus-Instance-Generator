@@ -37,7 +37,7 @@ std::vector<Player> Generator::GetPlayers ( void ) {
 }
 
 void Generator::GenerateRandom ( Database & db ) {
-    std::vector<std::string> players_shuffled = Fisher_Yates ( m_Players );
+    std::vector<Player> players_shuffled = Fisher_Yates ( m_Players );
 
     std::cout << "Survivors:" << std::endl; 
     for ( size_t i = 0; i < m_TeamOne; i++ ) 
@@ -51,5 +51,18 @@ void Generator::GenerateRandom ( Database & db ) {
 }
 
 void Generator::GenerateFair ( Database & db ) {
+                        /*<0,25)% winrate*/
+    std::vector<Player> firstQuarter,
+                        /*<25,50)% winrate*/
+                        secondQuarter,
+                        /*<50,75)% winrate*/
+                        thirdQuarter,
+                        /*<75,100)% winrate*/
+                        fourthQuarter;
 
+    for ( const auto & player : m_Players ) {
+        double percentage = db . GetPlayerPercentage ( player );
+        
+    }
+    
 }
