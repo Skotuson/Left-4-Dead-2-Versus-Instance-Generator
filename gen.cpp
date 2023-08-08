@@ -55,7 +55,9 @@ int main ( int argc, char * argv [] ) {
     std::vector<std::string> players;
     std::string player;
     size_t team_one = 4, team_two = 4, team_total = 0;
+    
     std::ifstream ifs ( "in.txt" );
+
     while ( ifs >> player ) {
         team_total++;
         players . push_back ( player );
