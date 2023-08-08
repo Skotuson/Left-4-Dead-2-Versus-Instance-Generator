@@ -32,6 +32,11 @@ size_t Database::GetGames ( void ) {
     return m_Games;
 }
 
+size_t Database::GetPlayerGames ( void ) {
+    
+    return 0;
+}
+
 double Database::GetPlayerPercentage ( const std::string & player ) {
     return ( m_Players[player] / (double) m_Games ) * 100.0;
 }

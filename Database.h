@@ -19,6 +19,7 @@ class Database {
         void   Add                 ( std::istream                & is );
         void   Save                ( void );
         size_t GetGames            ( void );
+        size_t GetPlayerGames      ( void );
         double GetPlayerPercentage ( const std::string           & player );
         void   PrintPlayerStats    ( void );
         void   PrintTeamStats      ( void );
