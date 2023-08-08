@@ -6,6 +6,8 @@
 #include <vector>
 #include <set>
 
+const int PRINT_PRECISION = 3;
+
 bool                     is_numeric   ( const std::string              & str );
 void                     print_set    ( const std::set<std::string>    & Set, 
                                         bool                             brackets = false, 

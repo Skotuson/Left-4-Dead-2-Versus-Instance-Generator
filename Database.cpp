@@ -48,7 +48,7 @@ double Database::GetPlayerPercentage ( const std::string & player ) {
 
 void Database::PrintPlayerStats ( void ) {
     for ( const auto & elem : m_Players )
-        std::cout << elem . first << " won " << std::setprecision ( 3 ) << elem . second << " out of " << GetPlayerGames ( elem . first ) << " (" << GetPlayerPercentage ( elem . first ) << "%)" << std::endl;
+        std::cout << elem . first << " won " << std::setprecision ( PRINT_PRECISION ) << elem . second << " out of " << GetPlayerGames ( elem . first ) << " (" << GetPlayerPercentage ( elem . first ) << "%)" << std::endl;
 }
 
 void Database::PrintTeamStats ( void ) {

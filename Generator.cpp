@@ -41,11 +41,15 @@ void Generator::GenerateRandom ( Database & db ) {
 
     std::cout << "Survivors:" << std::endl; 
     for ( size_t i = 0; i < m_TeamOne; i++ ) 
-        std::cout << players_shuffled[i] << std::setprecision ( 3 ) << " [" << db . GetPlayerPercentage ( players_shuffled[i] ) << "%]" << " ";
+        std::cout << players_shuffled[i] << std::setprecision ( PRINT_PRECISION ) << " [" << db . GetPlayerPercentage ( players_shuffled[i] ) << "%]" << " ";
     std::cout << std::endl;
 
     std::cout << "Infected:" << std::endl; 
     for ( size_t i = m_TeamOne; i < m_TeamOne + m_TeamTwo; i++ ) 
-        std::cout << players_shuffled[i] << std::setprecision ( 3 ) << " [" << db . GetPlayerPercentage ( players_shuffled[i] ) << "%]" << " ";
+        std::cout << players_shuffled[i] << std::setprecision ( PRINT_PRECISION ) << " [" << db . GetPlayerPercentage ( players_shuffled[i] ) << "%]" << " ";
     std::cout << std::endl << std::endl;
+}
+
+void Generator::GenerateFair ( Database & db ) {
+
 }
