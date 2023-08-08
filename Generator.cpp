@@ -62,7 +62,13 @@ void Generator::GenerateFair ( Database & db ) {
 
     for ( const auto & player : m_Players ) {
         double percentage = db . GetPlayerPercentage ( player );
-        
+        if ( percentage < 25.0 )
+            firstQuarter . push_back ( player );
+        else if ( percentage < 50.0 )
+            secondQuarter . push_back ( player );
+        else if ( percentage < 75.0 )
+            thirdQuarter . push_back ( player );
+        else fourthQuarter . push_back ( player );
     }
     
 }
