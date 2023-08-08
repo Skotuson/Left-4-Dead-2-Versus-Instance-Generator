@@ -1,4 +1,5 @@
 #include <iostream>
+#include <unistd.h>
 #include <fstream>
 #include <iomanip>
 #include <cmath>
@@ -71,4 +72,18 @@ void Generator::GenerateFair ( Database & db ) {
         else fourthQuarter . push_back ( player );
     }
     
+
 }
+
+void Generator::GetRandomMap ( void ) {
+    srand( time ( nullptr ) );
+    std::string map = MAPS[rand() % MAPS . size()];
+    std::cout << "Map: " << map << std::endl;
+    while ( REROLL . count ( map ) ) {
+        std::cout << "Cringe Map, Rerolling..." << std::endl;
+        usleep ( 750'000 );
+        map = MAPS[rand() % MAPS . size()];
+        std::cout << "Map: " << map << std::endl;
+    }
+}
+

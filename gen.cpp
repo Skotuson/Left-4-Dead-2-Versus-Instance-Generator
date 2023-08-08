@@ -1,29 +1,9 @@
-#include <set>
-#include <map>
-#include <cmath>
-#include <ctime>
-#include <string>
-#include <cctype>
-#include <cstring>
-#include <cstdlib>
-#include <fstream>
-#include <unistd.h>
 #include <iostream>
-#include <iomanip>
-#include <algorithm>
+#include <cstring>
 
 #include "Generator.h"
 #include "Database.h"
 #include "Helper.h"
-
-const std::vector <std::string> MAPS = {
-    "No Mercy", "Crash Course", "Death Toll", "Dead Air", "Blood Harvest", "The Sacrifice", "The Last Stand",
-    "Dead Center", "The Passing", "Dark Carnival", "Swamp Fever", "Hard Rain", "The Parish", "Cold Stream"
-};
-
-const std::set <std::string> REROLL = {
-    "Crash Course", "The Sacrifice", "The Last Stand", "The Passing"
-};
 
 int main ( int argc, char * argv [] ) {
     Database db ( "save.txt" );
@@ -60,16 +40,6 @@ int main ( int argc, char * argv [] ) {
 
     std::cout << "Random shuffle:" << std::endl;
     gen . GenerateRandom ( db );
-
-    srand( time ( nullptr ) );
-    std::string map = MAPS[rand() % MAPS . size()];
-    std::cout << "Map: " << map << std::endl;
-    while ( REROLL . count ( map ) ) {
-        std::cout << "Cringe Map, Rerolling..." << std::endl;
-        usleep ( 750'000 );
-        map = MAPS[rand() % MAPS . size()];
-        std::cout << "Map: " << map << std::endl;
-    }
-
+    gen . GetRandomMap ( );
     return 0;
 }
