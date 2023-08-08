@@ -15,3 +15,10 @@ All of the above mentioned modes can be ran by using the `make` command with the
 ```
 make update
 ```
+
+## Planned features 💡
+- Map weight to make less played maps more likely to generate
+- More stats ( e.g. Winrate from last 10 games, team comparisons... )
+- Configuration files
+- Change rerolling strategy ( chance to not reroll "cringe" map )
+- Improve interface and maybe add some "`REPL`"
