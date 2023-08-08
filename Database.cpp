@@ -34,12 +34,9 @@ size_t Database::GetGames ( void ) {
 
 size_t Database::GetPlayerGames ( const std::string & player ) {
     size_t r = 0;
-    for ( const auto & m : m_Matches ) {
-        auto it = m . first . begin ( );
-        if ( it -> count ( player ) ) r++;
-        std::advance ( it, 1 );
-        if ( it -> count ( player ) ) r++;
-    }
+    for ( const auto & m : m_Matches ) 
+        for ( const auto & team : m . first ) 
+            if ( team . count ( player ) ) r++;
     return r;
 }
 
