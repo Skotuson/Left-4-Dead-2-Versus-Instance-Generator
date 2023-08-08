@@ -32,19 +32,24 @@ size_t Database::GetGames ( void ) {
     return m_Games;
 }
 
-size_t Database::GetPlayerGames ( void ) {
-    
-    return 0;
+size_t Database::GetPlayerGames ( const std::string & player ) {
+    size_t r = 0;
+    for ( const auto & m : m_Matches ) {
+        auto it = m . first . begin ( );
+        if ( it -> count ( player ) ) r++;
+        std::advance ( it, 1 );
+        if ( it -> count ( player ) ) r++;
+    }
+    return r;
 }
 
 double Database::GetPlayerPercentage ( const std::string & player ) {
-    return ( m_Players[player] / (double) m_Games ) * 100.0;
+    return ( m_Players[player] / (double) GetPlayerGames ( player ) ) * 100.0;
 }
 
 void Database::PrintPlayerStats ( void ) {
-    std::cout << "Out of " << m_Games << " games" << std::endl; 
     for ( const auto & elem : m_Players )
-        std::cout << elem . first << " won " << std::setprecision ( 3 ) << elem . second << " (" << GetPlayerPercentage ( elem . first ) << "%)" << std::endl;
+        std::cout << elem . first << " won " << std::setprecision ( 3 ) << elem . second << " out of " << GetPlayerGames ( elem . first ) << " (" << GetPlayerPercentage ( elem . first ) << "%)" << std::endl;
 }
 
 void Database::PrintTeamStats ( void ) {
