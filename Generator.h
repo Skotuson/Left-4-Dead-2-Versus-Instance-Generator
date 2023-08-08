@@ -11,6 +11,7 @@ class Generator {
         void Load ( const std::string & filename );
     private:
         std::vector<Player> m_Players;
+        size_t              m_Total    = 0;
 };
 
 #endif

@@ -41,6 +41,8 @@ size_t Database::GetPlayerGames ( const std::string & player ) {
 }
 
 double Database::GetPlayerPercentage ( const std::string & player ) {
+    if ( m_Players . find ( player ) == m_Players . end ( ) )
+        return 0.;
     return ( m_Players[player] / (double) GetPlayerGames ( player ) ) * 100.0;
 }
 
