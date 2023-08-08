@@ -31,13 +31,11 @@ int main ( int argc, char * argv [] ) {
         std::cout << "Missing -flag" << std::endl; 
         return 1;
     }
-
+    
     db . Save ( );
 
     Generator gen;
-
     gen . Load ( "in.txt" );
-
     std::cout << "Random shuffle:" << std::endl;
     gen . GenerateRandom ( db );
     gen . GetRandomMap ( );
