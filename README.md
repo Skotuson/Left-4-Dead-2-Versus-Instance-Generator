@@ -3,6 +3,8 @@
 
 ❗Not really finished, current version lacks configurable filenames and other quality of life features❗
 
+## Prerequisites
+
 ## Usage
 There are several modes the app can run in, like:
 - `default` - Prints out randomly shuffled teams and map
