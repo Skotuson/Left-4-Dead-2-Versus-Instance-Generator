@@ -27,7 +27,7 @@ class Generator {
         void                GenerateFair   ( Database & db );
         std::vector<Player> GetPlayers     ( void );
 
-        void                GetRandomMap   ( void );
+        void                GenerateMap    ( void );
     private:
         std::vector<Player> m_Players;
         size_t              m_TeamOne  = 0,

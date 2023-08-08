@@ -75,7 +75,7 @@ void Generator::GenerateFair ( Database & db ) {
 
 }
 
-void Generator::GetRandomMap ( void ) {
+void Generator::GenerateMap ( void ) {
     srand( time ( nullptr ) );
     std::string map = MAPS[rand() % MAPS . size()];
     std::cout << "Map: " << map << std::endl;
