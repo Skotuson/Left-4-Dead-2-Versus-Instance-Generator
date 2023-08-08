@@ -57,47 +57,8 @@ int main ( int argc, char * argv [] ) {
 
     gen . Load ( "in.txt" );
 
-    std::vector<std::string> players;
-    std::string player;
-    size_t team_one = 4, team_two = 4, team_total = 0;
-
-    std::ifstream ifs ( "in.txt" );
-
-    while ( ifs >> player ) {
-        team_total++;
-        players . push_back ( player );
-    }
-
-    ifs . close ( );
-
-    if ( team_total > 8 ) {
-        team_one = 4;
-        team_two = 4;
-    }
-
-    else if ( team_total < 8 ) {
-        srand ( time ( nullptr ) );
-        int coin = rand() % 2;
-        if ( ! coin ) {
-            team_one = std::ceil ( team_total / 2.0 );
-            team_two = std::floor ( team_total / 2.0 );
-        } else {
-            team_one = std::floor ( team_total / 2.0 );
-            team_two = std::ceil ( team_total / 2.0 );
-        }
-    }
-
-    std::vector<std::string> players_shuffled = Fisher_Yates ( players );
-
-    std::cout << "Survivors:" << std::endl; 
-    for ( size_t i = 0; i < team_one; i++ ) 
-        std::cout << players_shuffled[i] << std::setprecision ( 3 ) << " [" << db . GetPlayerPercentage ( players_shuffled[i] ) << "%]" << " ";
-    std::cout << std::endl;
-
-    std::cout << "Infected:" << std::endl; 
-    for ( size_t i = team_one; i < team_one + team_two; i++ ) 
-        std::cout << players_shuffled[i] << std::setprecision ( 3 ) << " [" << db . GetPlayerPercentage ( players_shuffled[i] ) << "%]" << " ";
-    std::cout << std::endl << std::endl;
+    std::cout << "Random shuffle:" << std::endl;
+    gen . GenerateRandom ( db );
 
     srand( time ( nullptr ) );
     std::string map = MAPS[rand() % MAPS . size()];

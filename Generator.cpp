@@ -1,7 +1,10 @@
+#include <iostream>
 #include <fstream>
+#include <iomanip>
 #include <cmath>
 
 #include "Generator.h"
+#include "Helper.h"
 
 void Generator::Load ( const std::string & filename ) {
     std::ifstream ifs ( filename );
@@ -27,4 +30,22 @@ void Generator::Load ( const std::string & filename ) {
             m_TeamTwo = std::ceil  ( m_Players . size ( ) / 2.0 );
         }
     }
+}
+
+std::vector<Player> Generator::GetPlayers ( void ) {
+    return m_Players;
+}
+
+void Generator::GenerateRandom ( Database & db ) {
+    std::vector<std::string> players_shuffled = Fisher_Yates ( m_Players );
+
+    std::cout << "Survivors:" << std::endl; 
+    for ( size_t i = 0; i < m_TeamOne; i++ ) 
+        std::cout << players_shuffled[i] << std::setprecision ( 3 ) << " [" << db . GetPlayerPercentage ( players_shuffled[i] ) << "%]" << " ";
+    std::cout << std::endl;
+
+    std::cout << "Infected:" << std::endl; 
+    for ( size_t i = m_TeamOne; i < m_TeamOne + m_TeamTwo; i++ ) 
+        std::cout << players_shuffled[i] << std::setprecision ( 3 ) << " [" << db . GetPlayerPercentage ( players_shuffled[i] ) << "%]" << " ";
+    std::cout << std::endl << std::endl;
 }
