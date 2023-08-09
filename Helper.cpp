@@ -1,3 +1,6 @@
+#include <cmath>
+#include <cfloat>
+
 #include "Helper.h"
 
 bool is_numeric ( const std::string & str ) {
@@ -5,6 +8,10 @@ bool is_numeric ( const std::string & str ) {
         if ( ! isdigit ( c ) )
             return false;
     return true;
+}
+
+bool eps_equal ( double a, double b ) {
+    return fabs ( a - b ) <= DBL_EPSILON * ( fabs ( a ) + fabs ( b ) );
 }
 
 void print_set ( const std::set<std::string> & Set, bool brackets,  std::ostream & os ) {
@@ -26,4 +33,13 @@ std::vector<std::string> Fisher_Yates ( const std::vector<std::string> & cards )
         shuffled[j] = tmp;
     }
     return shuffled;
+}
+
+bool get_parity ( int n ) {
+    bool parity = 0;
+    while ( n ) {
+        parity = ! parity;
+        //Remove the rightmost bit
+        n      = n & ( n - 1 );
+    }
 }

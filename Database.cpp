@@ -41,12 +41,14 @@ size_t Database::GetPlayerGames ( const std::string & player ) {
 }
 
 double Database::GetPlayerPercentage ( const std::string & player ) {
+    if ( m_Players . find ( player ) == m_Players . end ( ) )
+        return 0.;
     return ( m_Players[player] / (double) GetPlayerGames ( player ) ) * 100.0;
 }
 
 void Database::PrintPlayerStats ( void ) {
     for ( const auto & elem : m_Players )
-        std::cout << elem . first << " won " << std::setprecision ( 3 ) << elem . second << " out of " << GetPlayerGames ( elem . first ) << " (" << GetPlayerPercentage ( elem . first ) << "%)" << std::endl;
+        std::cout << elem . first << " won " << std::setprecision ( PRINT_PRECISION ) << elem . second << " out of " << GetPlayerGames ( elem . first ) << " (" << GetPlayerPercentage ( elem . first ) << "%)" << std::endl;
 }
 
 void Database::PrintTeamStats ( void ) {
