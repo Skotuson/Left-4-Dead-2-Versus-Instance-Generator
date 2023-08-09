@@ -38,6 +38,10 @@ int main ( int argc, char * argv [] ) {
     gen . Load ( "in.txt" );
     std::cout << "Random shuffle:" << std::endl;
     gen . GenerateRandom ( db );
-    gen . GetRandomMap ( );
+
+    std::cout << "\"Fair\" shuffle:" << std::endl;
+    gen . GenerateFair ( db );
+
+    gen . GenerateMap ( );
     return 0;
 }

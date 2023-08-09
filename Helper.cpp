@@ -34,3 +34,12 @@ std::vector<std::string> Fisher_Yates ( const std::vector<std::string> & cards )
     }
     return shuffled;
 }
+
+bool get_parity ( int n ) {
+    bool parity = 0;
+    while ( n ) {
+        parity = ! parity;
+        //Remove the rightmost bit
+        n      = n & ( n - 1 );
+    }
+}

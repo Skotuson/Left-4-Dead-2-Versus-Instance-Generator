@@ -52,27 +52,23 @@ void Generator::GenerateRandom ( Database & db ) {
 }
 
 void Generator::GenerateFair ( Database & db ) {
-                        /*<0,25)% winrate*/
-    std::vector<Player> firstQuarter,
-                        /*<25,50)% winrate*/
-                        secondQuarter,
-                        /*<50,75)% winrate*/
-                        thirdQuarter,
-                        /*<75,100)% winrate*/
-                        fourthQuarter;
+    std::vector<Player> players_shuffled ( m_Players . size ( ) );
+    int lo = 0, hi = m_Players . size ( ) - 1;
 
-    for ( const auto & player : m_Players ) {
-        double percentage = db . GetPlayerPercentage ( player );
-        if ( percentage < 25.0 )
-            firstQuarter . push_back ( player );
-        else if ( percentage < 50.0 )
-            secondQuarter . push_back ( player );
-        else if ( percentage < 75.0 )
-            thirdQuarter . push_back ( player );
-        else fourthQuarter . push_back ( player );
-    }
-    
+    for ( size_t i = 0; i < m_Players . size ( ); i++ )
+        if ( get_parity ( i ) )
+            players_shuffled[lo++] = m_Players[i];
+        else players_shuffled[hi--] = m_Players[i];
 
+    std::cout << "Survivors:" << std::endl; 
+    for ( size_t i = 0; i < m_TeamOne; i++ ) 
+        std::cout << players_shuffled[i] << std::setprecision ( PRINT_PRECISION ) << " [" << db . GetPlayerPercentage ( players_shuffled[i] ) << "%]" << " ";
+    std::cout << std::endl;
+
+    std::cout << "Infected:" << std::endl; 
+    for ( size_t i = m_TeamOne; i < m_TeamOne + m_TeamTwo; i++ ) 
+        std::cout << players_shuffled[i] << std::setprecision ( PRINT_PRECISION ) << " [" << db . GetPlayerPercentage ( players_shuffled[i] ) << "%]" << " ";
+    std::cout << std::endl << std::endl;
 }
 
 void Generator::GenerateMap ( void ) {

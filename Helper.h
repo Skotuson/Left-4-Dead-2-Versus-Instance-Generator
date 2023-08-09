@@ -14,6 +14,7 @@ bool                     eps_equal    ( double                           a,
 void                     print_set    ( const std::set<std::string>    & Set, 
                                         bool                             brackets = false, 
                                         std::ostream                   & os       = std::cout );
+bool                     get_parity   ( int                              n );
 std::vector<std::string> Fisher_Yates ( const std::vector<std::string> & cards );
 
 #endif
