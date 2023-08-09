@@ -1,3 +1,4 @@
+#include <algorithm>
 #include <iostream>
 #include <unistd.h>
 #include <fstream>
@@ -52,6 +53,10 @@ void Generator::GenerateRandom ( Database & db ) {
 }
 
 void Generator::GenerateFair ( Database & db ) {
+    std::vector<Player> sorted = m_Players;
+    std::sort ( sorted . begin ( ), sorted . end ( ), [&]( const Player & a, const Player & b ) {
+        return db . GetPlayerPercentage ( a ) < db . GetPlayerPercentage ( b );
+    } );
     std::vector<Player> players_shuffled ( m_Players . size ( ) );
     int lo = 0, hi = m_Players . size ( ) - 1;
 
