@@ -7,7 +7,7 @@ all: $(OUTPUT)
 
 compile: $(OUTPUT)
 
-$(OUTPUT): gen.o Database.o Helper.o Generator.o
+$(OUTPUT): gen.o Database.o Helper.o Generator.o REPL.o
 	$(LD) $(CXXFLAGS) -o $@ $^
 
 %.o: %.cpp
