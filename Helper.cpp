@@ -42,4 +42,6 @@ bool get_parity ( int n ) {
         //Remove the rightmost bit
         n      = n & ( n - 1 );
     }
+    
+    return parity;
 }
