@@ -4,6 +4,7 @@
 #include "Generator.h"
 #include "Database.h"
 #include "Helper.h"
+#include "REPL.h"
 
 int main ( int argc, char * argv [] ) {
     Database db ( "save.txt" );
@@ -22,10 +23,16 @@ int main ( int argc, char * argv [] ) {
             return 0;
         }
 
+        else if ( ! strcmp ( argv[1], "-interactive" ) ) {
+            REPL repl;
+            repl . Run ( );
+        }
+
         else {
             std::cout << "Invalid flag" << std::endl;
             return 1;
         }
+
         return 0;
     } else if ( argc >= 2 ) {
         std::cout << "Missing -flag" << std::endl; 

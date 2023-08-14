@@ -23,4 +23,4 @@ clean:
 	rm -f *.o $(OUTPUT)
  
 run: $(OUTPUT)
-	./$(OUTPUT)
+	./$(OUTPUT) -interactive
