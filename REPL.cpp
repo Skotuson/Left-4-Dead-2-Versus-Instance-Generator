@@ -1,5 +1,4 @@
 #include <iostream>
-#include <string>
 
 #include "REPL.h"
 
@@ -11,11 +10,13 @@ void REPL::Run ( void ) {
 }
 
 bool REPL::Read ( void ) {
-    std::string cmnd;
-    do {
+    std::string cmnd = "";
+    while ( 1 ) {
         std::cout << "> ";
-    } while ( std::cin >> cmnd && cmnd != "exit" );
-    return false;
+        if ( ! ( std::cin >> cmnd ) || cmnd == "exit" )
+            return false;
+    }
+    return true;
 }
 
 void REPL::Eval ( void ) {

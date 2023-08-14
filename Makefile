@@ -1,6 +1,6 @@
 CXX      = g++
 LD       = g++
-CXXFLAGS = -g -std=c++17 -Wall -pedantic
+CXXFLAGS = -g -std=c++17 -Wall -pedantic -fsanitize=address
 OUTPUT   = gen.out
 
 all: $(OUTPUT)
