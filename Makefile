@@ -3,11 +3,14 @@ LD       = g++
 CXXFLAGS = -g -std=c++17 -Wall -pedantic -fsanitize=address
 OUTPUT   = gen.out
 
+SOURCES = $(wildcard *.cpp */*.cpp)
+OBJS    = $(SOURCES:.cpp=.o)
+
 all: $(OUTPUT)
 
 compile: $(OUTPUT)
 
-$(OUTPUT): gen.o Database.o Helper.o Generator.o REPL.o
+$(OUTPUT): $(OBJS)
 	$(LD) $(CXXFLAGS) -o $@ $^
 
 %.o: %.cpp
@@ -19,8 +22,11 @@ stat: $(OUTPUT)
 update: $(OUTPUT)
 	./$(OUTPUT) -update
 
+i: $(OUTPUT)
+	./$(OUTPUT) -interactive
+
 clean:
 	rm -f *.o $(OUTPUT)
  
 run: $(OUTPUT)
-	./$(OUTPUT) -interactive
+	./$(OUTPUT)
