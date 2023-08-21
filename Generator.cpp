@@ -39,17 +39,7 @@ std::vector<Player> Generator::GetPlayers ( void ) {
 }
 
 void Generator::GenerateRandom ( Database & db ) {
-    std::vector<Player> players_shuffled = Fisher_Yates ( m_Players );
-
-    std::cout << "Survivors:" << std::endl; 
-    for ( size_t i = 0; i < m_TeamOne; i++ ) 
-        std::cout << players_shuffled[i] << std::setprecision ( PRINT_PRECISION ) << " [" << db . GetPlayerPercentage ( players_shuffled[i] ) << "%]" << " ";
-    std::cout << std::endl;
-
-    std::cout << "Infected:" << std::endl; 
-    for ( size_t i = m_TeamOne; i < m_TeamOne + m_TeamTwo; i++ ) 
-        std::cout << players_shuffled[i] << std::setprecision ( PRINT_PRECISION ) << " [" << db . GetPlayerPercentage ( players_shuffled[i] ) << "%]" << " ";
-    std::cout << std::endl << std::endl;
+    PrintShuffled ( db, Fisher_Yates ( m_Players ) );
 }
 
 void Generator::GenerateFair ( Database & db ) {
@@ -65,15 +55,7 @@ void Generator::GenerateFair ( Database & db ) {
             players_shuffled[lo++] = m_Players[i];
         else players_shuffled[hi--] = m_Players[i];
 
-    std::cout << "Survivors:" << std::endl; 
-    for ( size_t i = 0; i < m_TeamOne; i++ ) 
-        std::cout << players_shuffled[i] << std::setprecision ( PRINT_PRECISION ) << " [" << db . GetPlayerPercentage ( players_shuffled[i] ) << "%]" << " ";
-    std::cout << std::endl;
-
-    std::cout << "Infected:" << std::endl; 
-    for ( size_t i = m_TeamOne; i < m_TeamOne + m_TeamTwo; i++ ) 
-        std::cout << players_shuffled[i] << std::setprecision ( PRINT_PRECISION ) << " [" << db . GetPlayerPercentage ( players_shuffled[i] ) << "%]" << " ";
-    std::cout << std::endl << std::endl;
+    PrintShuffled ( db, players_shuffled );
 }
 
 void Generator::GenerateMap ( void ) {
@@ -86,5 +68,17 @@ void Generator::GenerateMap ( void ) {
         map = MAPS[rand() % MAPS . size()];
         std::cout << "Map: " << map << std::endl;
     }
+}
+
+void Generator::PrintShuffled ( Database & db, const std::vector<Player> & shuffled ) {
+    std::cout << "Survivors:" << std::endl; 
+    for ( size_t i = 0; i < m_TeamOne; i++ ) 
+        std::cout << shuffled[i] << std::setprecision ( PRINT_PRECISION ) << " [" << db . GetPlayerPercentage ( shuffled[i] ) << "%]" << " ";
+    std::cout << std::endl;
+
+    std::cout << "Infected:" << std::endl; 
+    for ( size_t i = m_TeamOne; i < m_TeamOne + m_TeamTwo; i++ ) 
+        std::cout << shuffled[i] << std::setprecision ( PRINT_PRECISION ) << " [" << db . GetPlayerPercentage ( shuffled[i] ) << "%]" << " ";
+    std::cout << std::endl << std::endl;
 }
 
