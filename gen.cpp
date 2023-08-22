@@ -21,6 +21,7 @@ int main ( int argc, char * argv [] ) {
             std::cout << "> ";
             db -> Add ( std::cin );
             db -> Save ( );
+            delete db;
             return 0;
         }
 
@@ -33,7 +34,8 @@ int main ( int argc, char * argv [] ) {
             std::cout << "Invalid flag" << std::endl;
             return 1;
         }
-
+        
+        delete db;
         return 0;
     } else if ( argc >= 2 ) {
         std::cout << "Missing -flag" << std::endl; 

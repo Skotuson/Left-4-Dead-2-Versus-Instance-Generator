@@ -22,7 +22,10 @@ bool REPL::Read ( void ) {
             return false;
         if ( cmnd == "help" )
             PrintHelp ( );
-        if ( cmnd == "update" );
+        if ( cmnd == "update" ) {
+            m_Database -> Add ( std::cin );
+            m_Database -> Save ( );
+        }
     }
     return true;
 }
