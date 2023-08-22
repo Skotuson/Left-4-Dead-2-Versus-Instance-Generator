@@ -12,17 +12,13 @@ int main ( int argc, char * argv [] ) {
     db -> Load ( );
 
     if ( argc > 1 && argc < 3 ) {
-        if ( ! strcmp ( argv[1], "-stat" ) ) {
+        if ( ! strcmp ( argv[1], "-stat" ) )
             db -> PrintPlayerStats ( );
-            return 0;
-        }
 
         else if ( ! strcmp ( argv[1], "-update" ) ) {
             std::cout << "> ";
             db -> Add ( std::cin );
             db -> Save ( );
-            delete db;
-            return 0;
         }
 
         else if ( ! strcmp ( argv[1], "-interactive" ) ) {
@@ -32,9 +28,10 @@ int main ( int argc, char * argv [] ) {
 
         else {
             std::cout << "Invalid flag" << std::endl;
+            delete db;
             return 1;
         }
-        
+
         delete db;
         return 0;
     } else if ( argc >= 2 ) {
@@ -51,7 +48,7 @@ int main ( int argc, char * argv [] ) {
 
     std::cout << "\"Fair\" shuffle:" << std::endl;
     gen . GenerateFair ( db );
-
+    
     gen . GenerateMap ( );
 
     delete db;

@@ -22,7 +22,11 @@ bool REPL::Read ( void ) {
             return false;
         if ( cmnd == "help" )
             PrintHelp ( );
-        if ( cmnd == "update" ) {
+        
+        else if ( cmnd == "stat" )
+            m_Database -> PrintPlayerStats ( );
+        
+        else if ( cmnd == "update" ) {
             m_Database -> Add ( std::cin );
             m_Database -> Save ( );
         }
@@ -35,7 +39,8 @@ void REPL::Eval ( void ) {
 }
 
 void REPL::PrintHelp ( void ) {
-    std::cout << "update - Inserts match into database"
+    std::cout << "stat - Prints player stats"
+        << "\nupdate - Inserts match into database"
         << "\nexit - Exits the program"
         << std::endl;
 }
