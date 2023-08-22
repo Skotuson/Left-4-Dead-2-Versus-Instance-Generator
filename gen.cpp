@@ -1,5 +1,6 @@
 #include <iostream>
 #include <cstring>
+#include <memory>
 
 #include "Generator.h"
 #include "Database.h"
@@ -7,19 +8,19 @@
 #include "REPL.h"
 
 int main ( int argc, char * argv [] ) {
-    Database db ( "save.txt" );
-    db . Load ( );
+    Database * db = new Database ( "save.txt" );
+    db -> Load ( );
 
     if ( argc > 1 && argc < 3 ) {
         if ( ! strcmp ( argv[1], "-stat" ) ) {
-            db . PrintPlayerStats ( );
+            db -> PrintPlayerStats ( );
             return 0;
         }
 
         else if ( ! strcmp ( argv[1], "-update" ) ) {
             std::cout << "> ";
-            db . Add ( std::cin );
-            db . Save ( );
+            db -> Add ( std::cin );
+            db -> Save ( );
             return 0;
         }
 
@@ -39,7 +40,7 @@ int main ( int argc, char * argv [] ) {
         return 1;
     }
     
-    db . Save ( );
+    db -> Save ( );
 
     Generator gen;
     gen . Load ( "in.txt" );
@@ -50,5 +51,8 @@ int main ( int argc, char * argv [] ) {
     gen . GenerateFair ( db );
 
     gen . GenerateMap ( );
+
+    delete db;
+
     return 0;
 }

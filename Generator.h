@@ -23,13 +23,13 @@ const std::set <std::string> REROLL = {
 class Generator {
     public:
         void                Load           ( const std::string         & filename );
-        void                GenerateRandom ( Database                  & db );
-        void                GenerateFair   ( Database                  & db );
+        void                GenerateRandom ( Database                  * db );
+        void                GenerateFair   ( Database                  * db );
         std::vector<Player> GetPlayers     ( void );
 
         void                GenerateMap    ( void );
     private:
-        void                PrintShuffled  ( Database                  & db,
+        void                PrintShuffled  ( Database                  * db,
                                              const std::vector<Player> & shuffled );
 
         std::vector<Player> m_Players;
