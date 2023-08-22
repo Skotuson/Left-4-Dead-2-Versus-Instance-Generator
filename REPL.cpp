@@ -2,6 +2,11 @@
 
 #include "REPL.h"
 
+REPL::REPL ( Database * db )
+: m_Database ( db )
+{
+}
+
 void REPL::Run ( void ) {
     std::cout << "Welcome to the L4D2 Instance Generator interactive mode.\nUse the \"help\" to learn more commands" << std::endl;
     while ( Read ( ) ) {

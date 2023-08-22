@@ -25,7 +25,7 @@ int main ( int argc, char * argv [] ) {
         }
 
         else if ( ! strcmp ( argv[1], "-interactive" ) ) {
-            REPL repl;
+            REPL repl ( db );
             repl . Run ( );
         }
 
