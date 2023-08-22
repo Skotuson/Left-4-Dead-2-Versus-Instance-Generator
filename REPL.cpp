@@ -15,10 +15,19 @@ bool REPL::Read ( void ) {
         std::cout << "> ";
         if ( ! ( std::cin >> cmnd ) || cmnd == "exit" )
             return false;
+        if ( cmnd == "help" )
+            PrintHelp ( );
+        if ( cmnd == "update" );
     }
     return true;
 }
 
 void REPL::Eval ( void ) {
 
+}
+
+void REPL::PrintHelp ( void ) {
+    std::cout << "update - Inserts match into database"
+        << "\nexit - Exits the program"
+        << std::endl;
 }

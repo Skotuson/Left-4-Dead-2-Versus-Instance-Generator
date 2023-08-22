@@ -8,10 +8,11 @@ using Command = std::string;
 
 class REPL {
     public:
-        void Run  ( void );
-        bool Read ( void );
-        void Eval ( void );
+        void Run       ( void );
+        bool Read      ( void );
+        void Eval      ( void );
     private:
+        void PrintHelp ( void );
         std::queue<Command> m_Commands;
 };
 
