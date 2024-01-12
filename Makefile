@@ -19,6 +19,9 @@ $(OUTPUT): $(OBJS)
 stat: $(OUTPUT)
 	./$(OUTPUT) -stat
 
+team: $(OUTPUT)
+	./$(OUTPUT) -team
+
 update: $(OUTPUT)
 	./$(OUTPUT) -update
 

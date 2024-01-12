@@ -21,6 +21,9 @@ int main ( int argc, char * argv [] ) {
             db -> Save ( );
         }
 
+        else if ( ! strcmp ( argv[1], "-team" ) )
+            db -> PrintTeammates ( );
+        
         else if ( ! strcmp ( argv[1], "-interactive" ) ) {
             REPL repl ( db );
             repl . Run ( );
