@@ -41,6 +41,25 @@ size_t Database::GetPlayerGames ( const std::string & player ) {
     return r;
 }
 
+std::map<std::string, size_t> Database::GetTeammates ( const std::string & player ) {
+    std::map<std::string, size_t> teammates;
+
+    for ( const auto & m : m_Matches ) {
+        for ( const auto & team : m . first )
+            if ( team . count ( player ) ) {
+                for ( const auto & p : team )
+                    if ( p != player ) {
+                        auto it = teammates . find ( p );
+                        if ( it == teammates . end ( ) )
+                            teammates . insert ( { p, 1 } );
+                        else it -> second += 1;
+                    }
+            }
+    }
+
+    return teammates;
+}
+
 double Database::GetPlayerPercentage ( const std::string & player ) {
     if ( m_Players . find ( player ) == m_Players . end ( ) )
         return 0.;
@@ -50,6 +69,22 @@ double Database::GetPlayerPercentage ( const std::string & player ) {
 void Database::PrintPlayerStats ( void ) {
     for ( const auto & elem : m_Players )
         std::cout << elem . first << " won " << std::setprecision ( PRINT_PRECISION ) << elem . second << " out of " << GetPlayerGames ( elem . first ) << " (" << GetPlayerPercentage ( elem . first ) << "%)" << std::endl;
+}
+
+void Database::PrintTeammates ( void ) {
+    for ( const auto & player : m_Players ) {
+        Teammates teammates = GetTeammates ( player . first );
+        size_t totalGames = GetPlayerGames ( player . first );
+        std::cout << player . first << " played with:" << std::endl;
+
+        auto percent = [] ( double a, double b ) {
+            return (a / b) * 100.0;
+        };
+
+        for ( const auto & teammate : teammates ) {
+            std::cout << "\t- " << teammate . second << " times with " << teammate . first << " [" << std::setprecision ( PRINT_PRECISION ) << percent ( teammate . second, totalGames ) << "%]" << std::endl;
+        }
+    }
 }
 
 void Database::PrintTeamStats ( void ) {
