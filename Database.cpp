@@ -75,7 +75,7 @@ void Database::PrintTeammates ( void ) {
     for ( const auto & player : m_Players ) {
         Teammates teammates = GetTeammates ( player . first );
         size_t totalGames = GetPlayerGames ( player . first );
-        std::cout << player . first << " played with:" << std::endl;
+        std::cout << player . first << " played:" << std::endl;
 
         auto percent = [] ( double a, double b ) {
             return (a / b) * 100.0;
