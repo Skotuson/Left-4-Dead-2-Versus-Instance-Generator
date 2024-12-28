@@ -5,5 +5,4 @@
 
 struct database_loader_t : loader_t<database_t>
 {
-    virtual database_t load() = 0;
 };
