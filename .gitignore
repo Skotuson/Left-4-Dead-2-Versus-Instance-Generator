@@ -4,3 +4,4 @@ a.out
 *.out
 in.txt
 .vscode/settings.json
+.vscode/c_cpp_properties.json
