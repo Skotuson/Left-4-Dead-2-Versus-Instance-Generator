@@ -6,7 +6,9 @@
 
 struct match_t
 {
-    match_t(team_t const &team_a, team_t const &team_b, bool victory);
+    using timestamp_t = std::chrono::system_clock::time_point;
+
+    match_t(team_t const &team_a, team_t const &team_b, bool victory, timestamp_t const & timestamp = std::chrono::system_clock::now());
 
 private:
     team_t const team_a_;
