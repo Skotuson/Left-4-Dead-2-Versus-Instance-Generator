@@ -1,5 +1,6 @@
 #pragma once
 
+#include <iostream>
 #include <vector>
 #include <set>
 
@@ -10,6 +11,9 @@
 struct database_t
 {
     database_t(void) = default;
+
+    void load(std::istream &is);
+    void save(std::ostream &os);
 
 private:
     std::set<player_t> players_;

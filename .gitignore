@@ -3,3 +3,4 @@ a.out
 *.o
 *.out
 in.txt
+.vscode/settings.json
