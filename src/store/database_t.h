@@ -1,8 +1,10 @@
 #pragma once
 
+#include <vector>
 #include <set>
 
 #include "../player/player_t.h"
+#include "../match/match_t.h"
 #include "../team/team_t.h"
 
 struct database_t
@@ -12,4 +14,5 @@ struct database_t
 private:
     std::set<player_t> players_;
     std::set<team_t> teams_;
+    std::vector<match_t> matches_;
 };
