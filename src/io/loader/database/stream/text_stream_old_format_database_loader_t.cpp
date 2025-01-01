@@ -42,6 +42,17 @@ database_t text_stream_old_format_database_loader_t::load()
             auto team_b = collect_team(match[2].str());
             size_t wins_a = std::stoi(match[3].str());
             size_t wins_b = std::stoi(match[4].str());
+
+            auto register_matches = [&](team_t const &team_a, team_t const &team_b, match_t::outcome_t outcome, size_t n_games)
+            {
+                while (n_games--)
+                {
+                    db.match_add(match_t(team_a, team_b, outcome, std::chrono::system_clock::time_point{}));
+                }
+            };
+
+            register_matches(team_a, team_b, match_t::outcome_t::FIRST_TEAM_WON, wins_a);
+            register_matches(team_a, team_b, match_t::outcome_t::SECOND_TEAM_WON, wins_b);
         }
 
         else
