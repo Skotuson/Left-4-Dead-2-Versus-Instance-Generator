@@ -10,13 +10,20 @@
 
 struct database_t
 {
-    database_t(void) = default;
+    using players_t = std::set<player_t>;
+    using teams_t = std::set<team_t>;
+    using matches_t = std::vector<match_t>;
 
-    void load(std::istream &is);
-    void save(std::ostream &os);
+    void player_add(player_t const & player);
+    void team_add(team_t const & team);
+    void match_add(match_t const & match);
+
+    players_t const & players_get(void);
+    teams_t const & teams_get(void);
+    matches_t const & matches_get(void);
 
 private:
-    std::set<player_t> players_;
-    std::set<team_t> teams_;
-    std::vector<match_t> matches_;
-};
+    players_t players_;
+    teams_t teams_;
+    matches_t matches_;
+}; // database_t
