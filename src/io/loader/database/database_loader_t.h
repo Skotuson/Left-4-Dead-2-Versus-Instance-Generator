@@ -1,7 +1,7 @@
 #pragma once
 
 #include "../loader_t.h"
-#include "../../store/database_t.h"
+#include "../../../store/database_t.h"
 
 #include <regex>
 
@@ -11,6 +11,8 @@ struct database_loader_t : loader_t<database_t>
         : format_(format)
     {
     }
+
+    virtual ~database_loader_t() = default;
 
 protected:
     std::regex format_;
