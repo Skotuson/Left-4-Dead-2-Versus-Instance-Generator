@@ -1,15 +1,18 @@
 #pragma once
 
 #include <set>
+#include <ostream>
 
 #include "../player/player_t.h"
 
 struct team_t
 {
     void player_add(player_t const &player);
-    player_t const & player_get(player_t::player_id_t const & id);
+    player_t const &player_get(player_t::player_id_t const &id);
 
-    bool operator<(team_t const & team) const;
+    bool operator<(team_t const &team) const;
+
+    friend std::ostream &operator<<(std::ostream &os, team_t const &team);
 
     using iterator_ = std::set<player_t>::iterator;
     using c_iterator_ = std::set<player_t>::const_iterator;

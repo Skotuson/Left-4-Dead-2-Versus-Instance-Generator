@@ -19,3 +19,20 @@ bool team_t::operator<(team_t const &team) const
 {
     return teammates_ < team.teammates_;
 }
+
+std::ostream &operator<<(std::ostream &os, team_t const &team)
+{
+    bool first = true;
+    for (auto const &player : team)
+    {
+        if (!first)
+        {
+            os << " ";
+        }
+
+        os << player.identifier();
+
+        first = false;
+    }
+    return os;
+}
