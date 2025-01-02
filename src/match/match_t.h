@@ -14,7 +14,12 @@ struct match_t
 
     using timestamp_t = std::chrono::system_clock::time_point;
 
-    match_t(team_t const &team_a, team_t const &team_b, outcome_t outcome, timestamp_t const &timestamp = std::chrono::system_clock::now());
+    match_t(team_t const &team_a, team_t const &team_b, outcome_t outcome,
+            timestamp_t const &timestamp = std::chrono::system_clock::now());
+
+    team_t const & first(void) const;
+    team_t const & second(void) const;
+    outcome_t const & outcome(void) const;
 
 private:
     team_t const team_a_;
