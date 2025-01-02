@@ -4,7 +4,7 @@
 #include <sstream>
 
 text_stream_old_format_database_loader_t::text_stream_old_format_database_loader_t(std::string const &filename)
-    : stream_old_format_database_loader_t(std::move(std::ifstream(filename)))
+    : stream_old_format_database_loader_t(std::make_unique<std::ifstream>(filename))
 {
 }
 
@@ -12,7 +12,7 @@ database_t text_stream_old_format_database_loader_t::load()
 {
     database_t db;
     std::string line;
-    while (std::getline(underlying_, line))
+    while (std::getline(*underlying_, line))
     {
         // Strip windows linefeed
         if (line.back() == '\r')
