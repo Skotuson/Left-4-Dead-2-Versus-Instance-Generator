@@ -12,7 +12,7 @@ int main(int argc, char *argv[])
 {
     database_t db;
     std::shared_ptr<database_loader_t> loader(new text_stream_old_format_database_loader_t("persistence/save.txt"));
-    std::shared_ptr<database_saver_t> saver(new text_stream_old_format_database_saver_t("persistence/matches.txt"));
+    std::shared_ptr<database_saver_t> saver(new text_stream_old_format_database_saver_t("persistence/matches_old_format.txt"));
 
     db = loader->load();
     saver->save(db);
