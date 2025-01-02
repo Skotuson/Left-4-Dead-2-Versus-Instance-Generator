@@ -3,7 +3,7 @@ LD       = g++
 CXXFLAGS = -std=c++17 -Wall -pedantic -O2 -O3
 
 OUTPUT   = gen
-TEST_OUTPUT = gen
+TEST_OUTPUT = gen_test
 
 MAIN_SOURCES = $(wildcard $(shell find src -name '*.cpp'))
 TEST_SOURCES = $(filter-out ./src/main.cpp, $(wildcard $(shell find . -name '*.cpp')))
