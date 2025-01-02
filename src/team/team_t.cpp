@@ -15,7 +15,7 @@ player_t const &team_t::player_get(player_t::player_id_t const &id)
     return *it;
 }
 
-bool team_t::operator<(team_t const &team)
+bool team_t::operator<(team_t const &team) const
 {
     return teammates_ < team.teammates_;
 }
