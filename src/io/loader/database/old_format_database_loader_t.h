@@ -10,4 +10,6 @@ struct old_format_database_loader_t : database_loader_t
         : database_loader_t(std::regex(R"((.+?)\s+x\s+(.+?)\s+-\s+(\d+)\s*:\s*(\d+))"))
     {
     }
+
+    virtual ~old_format_database_loader_t() = default;
 };
