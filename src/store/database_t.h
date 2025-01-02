@@ -18,9 +18,9 @@ struct database_t
     void team_add(team_t const & team);
     void match_add(match_t const & match);
 
-    players_t const & players_get(void);
-    teams_t const & teams_get(void);
-    matches_t const & matches_get(void);
+    players_t const & players_get(void) const;
+    teams_t const & teams_get(void) const;
+    matches_t const & matches_get(void) const;
 
 private:
     players_t players_;
