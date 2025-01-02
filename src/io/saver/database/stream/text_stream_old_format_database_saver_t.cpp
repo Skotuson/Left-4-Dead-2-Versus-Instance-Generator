@@ -18,7 +18,7 @@ void text_stream_old_format_database_saver_t::save(database_t const &database)
         auto it = mapping.find(team_pair);
         if (it == mapping.end())
         {
-            mapping.insert({team_pair, {match.outcome() == match_t::outcome_t::FIRST_TEAM_WON, match.outcome() == match_t::outcome_t::FIRST_TEAM_WON}});
+            mapping.insert({team_pair, {match.outcome() == match_t::outcome_t::FIRST_TEAM_WON, match.outcome() == match_t::outcome_t::SECOND_TEAM_WON}});
         }
 
         else if (match.outcome() == match_t::outcome_t::FIRST_TEAM_WON)
@@ -34,6 +34,6 @@ void text_stream_old_format_database_saver_t::save(database_t const &database)
 
     for (auto const &record : mapping)
     {
-        *underlying_ << record.first.first << " x " << record.first.second << " - " << record.second.first << " : " << record.second.first << std::endl;
+        *underlying_ << record.first.first << " x " << record.first.second << " - " << record.second.first << " : " << record.second.second << std::endl;
     }
 }
