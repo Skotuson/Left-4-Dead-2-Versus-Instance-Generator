@@ -7,7 +7,8 @@
 #include "Helper.h"
 #include "REPL.h"
 
-int main ( int argc, char * argv [] ) {
+int main(int argc, char *argv[])
+{
     Database * db = new Database ( "save.txt" );
     db -> Load ( );
 
@@ -23,7 +24,7 @@ int main ( int argc, char * argv [] ) {
 
         else if ( ! strcmp ( argv[1], "-team" ) )
             db -> PrintTeammates ( );
-        
+
         else if ( ! strcmp ( argv[1], "-interactive" ) ) {
             REPL repl ( db );
             repl . Run ( );
@@ -38,10 +39,10 @@ int main ( int argc, char * argv [] ) {
         delete db;
         return 0;
     } else if ( argc >= 2 ) {
-        std::cout << "Missing -flag" << std::endl; 
+        std::cout << "Missing -flag" << std::endl;
         return 1;
     }
-    
+
     db -> Save ( );
 
     Generator gen;
@@ -51,7 +52,7 @@ int main ( int argc, char * argv [] ) {
 
     std::cout << "\"Fair\" shuffle:" << std::endl;
     gen . GenerateFair ( db );
-    
+
     gen . GenerateMap ( );
 
     delete db;
