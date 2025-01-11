@@ -14,6 +14,7 @@ Adam Lukas Ondra x Jirka Vitek - 1 : 0
 Adam Lukas Ondra x Tomas Vitek - 0 : 1
 Adam Lukas Ondra Simon x Jirka Tomas Vitek - 0 : 1
 Adam Lukas Ondra Tomas x Jirka Marco Mikulas Vitek - 0 : 1
+Adam Lukas Simon Tomas x Jirka Marco Ondra Vitek - 0 : 1
 Adam Lukas Simon Vitek x Jirka Marco Ondra Tomas - 0 : 1
 Adam Lukas Tomas x Jirka Ondra Vitek - 0 : 1
 Adam Lukas Vitek x Jirka Ondra - 0 : 1
