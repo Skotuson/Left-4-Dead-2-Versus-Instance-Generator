@@ -47,7 +47,7 @@ database_t text_stream_old_format_database_loader_t::load()
             {
                 while (n_games--)
                 {
-                    db.match_add(match_t(team_a, team_b, outcome, std::chrono::system_clock::time_point{}));
+                    db.match_add(match_t(team_a, team_b, outcome));
                 }
             };
 
