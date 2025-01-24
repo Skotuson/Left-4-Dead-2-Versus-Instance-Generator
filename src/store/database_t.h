@@ -2,6 +2,7 @@
 
 #include <iostream>
 #include <vector>
+#include <regex>
 #include <set>
 
 #include "../player/player_t.h"
@@ -10,6 +11,8 @@
 
 struct database_t
 {
+    static inline std::regex const & OLD_DB_FORMAT = std::regex(R"((.+?)\s+x\s+(.+?)\s+-\s+(\d+)\s*:\s*(\d+))");
+
     using players_t = std::set<player_t>;
     using teams_t = std::set<team_t>;
     using matches_t = std::vector<match_t>;
