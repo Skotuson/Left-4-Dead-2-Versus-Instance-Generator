@@ -4,5 +4,5 @@
 
 struct old_format_string_database_serializer_t : string_database_serializer_t
 {
-    virtual std::string serialize(database_t const &item) const = 0;
+    std::string serialize(database_t const &database) const;
 };
