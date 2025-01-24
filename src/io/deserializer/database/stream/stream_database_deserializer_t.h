@@ -4,6 +4,6 @@
 
 #include <istream>
 
-struct stream_database_deserializer_t : database_deserializer_t<std::istream>
+struct stream_database_deserializer_t : database_deserializer_t<std::istream &>
 {
 };
