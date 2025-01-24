@@ -39,7 +39,7 @@ struct match_t
 
     match_t(team_t const &team_a, team_t const &team_b, outcome_t outcome,
             map_t map = NOT_APPLICABLE,
-            std::optional<delta_t> score_diff,
+            std::optional<delta_t> const &score_diff,
             timestamp_t const &timestamp = std::chrono::system_clock::time_point{});
 
     team_t const &first(void) const;
