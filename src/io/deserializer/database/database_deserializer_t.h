@@ -4,6 +4,6 @@
 #include "../../store/database_t.h"
 
 template <typename U>
-struct database_deserializer_t : deserializer_t<database_t const &, U>
+struct database_deserializer_t : deserializer_t<database_t, U>
 {
 };
