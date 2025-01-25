@@ -12,6 +12,7 @@
 struct database_t
 {
     static inline std::regex const & OLD_DB_FORMAT = std::regex(R"((.+?)\s+x\s+(.+?)\s+-\s+(\d+)\s*:\s*(\d+))");
+    static inline std::regex const & NEW_DB_FORMAT = std::regex(R"((.+?)\s+x\s+(.+?)\s+-\s+(S|F)\s+'(.*?)'\s+(\d+))");
 
     using players_t = std::set<player_t>;
     using teams_t = std::set<team_t>;
