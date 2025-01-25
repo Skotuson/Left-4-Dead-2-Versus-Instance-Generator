@@ -16,7 +16,7 @@ database_t old_format_stream_database_deserializer_t::deserialize(std::istream &
 
         std::smatch match;
 
-        if (std::regex_match(line, match, database_t::OLD_DB_FORMAT))
+        if (std::regex_match(line, match, match_t::OLD_MATCH_FORMAT))
         {
             auto collect_team = [&](std::string const &str)
             {
