@@ -8,32 +8,32 @@ Adam Jirka Lukas Mikulas x Ondra Tomas Vitek - F 'N/A' 0
 Adam Jirka Marek x Lukas Tomas Vitek - S 'N/A' 0
 Adam Jirka Ondra x Lukas Simon Vitek - S 'N/A' 1708547640
 Adam Jirka Tomas x Lukas Simon Vitek - S 'N/A' 0
-Adam Jirka Tomas x O'Neil Vitek - S 'N/A' 0
+Adam Jirka Tomas x O'Neil Vitek - S 'N/A' 1700859240
 Adam Jirka Vitek x Lukas Ondra Simon - F 'N/A' 1737068303
 Adam Jirka Vitek x Lukas Ondra Tomas - S 'N/A' 1706820180
-Adam Jirka Vitek x Lukas Ondra Tomas - S 'N/A' 0
+Adam Jirka Vitek x Lukas Ondra Tomas - S 'N/A' 1703462700
 Adam Lukas x Jirka Vitek - S 'N/A' 1706904420
-Adam Lukas Marek x Jirka Ondra Tomas - S 'N/A' 0
+Adam Lukas Marek x Jirka Ondra Tomas - S 'N/A' 1703967840
 Adam Lukas Marek Vitek x Jirka Ondra Simon Tomas - S 'N/A' 0
 Adam Lukas O'Neil Rohlicek x Jirka Mikulas Simon Vitek - S 'N/A' 0
 Adam Lukas Ondra x Jirka Simon Vitek - S 'The Parish' 1737274980
 Adam Lukas Ondra x Jirka Vitek - F 'N/A' 1705698540
 Adam Lukas Ondra x Tomas Vitek - S 'N/A' 1706295600
 Adam Lukas Ondra Simon x Jirka Tomas Vitek - S 'N/A' 1735083960
-Adam Lukas Ondra Tomas x Jirka Marco Mikulas Vitek - S 'N/A' 0
+Adam Lukas Ondra Tomas x Jirka Marco Mikulas Vitek - S 'N/A' 1703964240
 Adam Lukas Simon x Jirka Ondra Vitek - S 'N/A' 1737072540
 Adam Lukas Simon Tomas x Jirka Marco Ondra Vitek - S 'N/A' 1736626320
 Adam Lukas Simon Vitek x Jirka Marco Ondra Tomas - S 'N/A' 1704396180
 Adam Lukas Tomas x Jirka Ondra Vitek - S 'N/A' 1705090260
 Adam Lukas Vitek x Jirka Ondra - S 'N/A' 1705701540
-Adam Lukas Vitek x Jirka Ondra Tomas - S 'N/A' 0
+Adam Lukas Vitek x Jirka Ondra Tomas - S 'N/A' 1703466660
 Adam Lukas Vitek x Jirka Ondra Tomas - S 'N/A' 0
 Adam Marek Vitek x Jirka Lukas Tomas - S 'N/A' 0
 Adam Mikulas Simon Tomas x Jirka Lukas Ondra Vitek - S 'N/A' 1704399780
 Adam Ondra x Jirka Simon Vitek - S 'N/A' 1735502760
 Adam Ondra x Jirka Vitek - S 'N/A' 1735335900
 Adam Ondra Tomas x Jirka Lukas Vitek - S 'N/A' 1705176960
-Adam Ondra Tomas x Jirka Lukas Vitek - S 'N/A' 0
+Adam Ondra Tomas x Jirka Lukas Vitek - S 'N/A' 1702143480
 Adam Ondra Vitek x Jirka Lukas - S 'N/A' 1737063983
 Adam Simon x Jirka Lukas Ondra - F 'N/A' 1735766700
 Adam Simon Tomas x Jirka Ondra Vitek - S 'N/A' 0
@@ -51,12 +51,12 @@ Jirka Lukas Ondra x Mikulas O'Neil Vitek - F 'N/A' 1707163200
 Jirka Lukas Ondra x Simon Tomas Vitek - F 'N/A' 1734987960
 Jirka Lukas Simon x Ondra Tomas Vitek - F 'N/A' 0
 Jirka Marco Vitek x Lukas Ondra Simon Tomas - S 'N/A' 1704743760
-Jirka Marek Tomas x Lukas Ondra Simon - S 'N/A' 0
+Jirka Marek Tomas x Lukas Ondra Simon - S 'N/A' 1703712840
 Jirka Mikulas Ondra x Lukas O'Neil Vitek - S 'N/A' 1707166740
 Jirka Mikulas Tomas x Lukas Simon Vitek - S 'N/A' 1714161120
 Jirka Mikulas Vitek x Lukas Ondra Tomas - F 'N/A' 1704403380
 Jirka Ondra x Lukas Tomas - F 'N/A' 1705868280
-Jirka Ondra Tomas x Lukas Mikulas Vitek - F 'N/A' 0
+Jirka Ondra Tomas x Lukas Mikulas Vitek - F 'N/A' 1702152060
 Jirka Ondra Vitek x Lukas Marek Simon - S 'N/A' 1707343920
 Jirka Ondra Vitek x Marek Simon Tomas - F 'N/A' 0
 Jirka Simon x Lukas O'Neil Vitek - S 'N/A' 0
