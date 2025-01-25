@@ -4,6 +4,6 @@
 
 #include <istream>
 
-struct match_database_deserializer_t : match_deserializer_t<std::istream &>
+struct stream_match_deserializer_t : match_deserializer_t<std::istream &>
 {
 };
