@@ -36,7 +36,7 @@ database_t new_format_stream_database_deserializer_t::deserialize(std::istream &
             auto team_b = collect_team(match[2].str());
             auto outcome = match[3].str() == "F" ? match_t::outcome_t::FIRST_TEAM_WON : match_t::outcome_t::SECOND_TEAM_WON;
             auto map = match_t::STRING_TO_MAP.at(match[4].str());
-            auto timestamp = std::chrono::system_clock::time_point(std::chrono::milliseconds(std::stoll(match[5].str())));
+            auto timestamp = std::chrono::system_clock::time_point(std::chrono::seconds(std::stoll(match[5].str())));
             
             db.match_add(match_t(team_a, team_b, outcome, map, std::nullopt, timestamp));
         }
