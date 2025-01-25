@@ -1,6 +1,7 @@
 #include "new_format_string_database_serializer_t.h"
 
 #include <sstream>
+#include <chrono>
 
 std::string new_format_string_database_serializer_t::serialize(database_t const &database) const
 {
@@ -17,7 +18,7 @@ std::string new_format_string_database_serializer_t::serialize(database_t const 
                << match.second() << " - "
                << outcome_to_string(match.outcome())
                << " '" << match.map() << "'"
-               << " " << match.timestamp().time_since_epoch().count()
+               << " " << std::chrono::duration_cast<std::chrono::seconds>(match.timestamp().time_since_epoch()).count()
                << std::endl;
     }
 
