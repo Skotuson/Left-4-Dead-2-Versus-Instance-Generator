@@ -16,7 +16,7 @@ std::string new_format_string_database_serializer_t::serialize(database_t const 
         result << match.first() << " x "
                << match.second() << " - "
                << outcome_to_string(match.outcome())
-               << " " << match.map()
+               << " '" << match.map() << "'"
                << " " << match.timestamp().time_since_epoch().count()
                << std::endl;
     }
