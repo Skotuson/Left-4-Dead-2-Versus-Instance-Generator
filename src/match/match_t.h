@@ -2,6 +2,7 @@
 
 #include <chrono>
 #include <optional>
+#include <unordered_map>
 
 #include "../team/team_t.h"
 
@@ -33,6 +34,40 @@ struct match_t
         //
         NOT_APPLICABLE
     };
+
+    static inline std::unordered_map<map_t, std::string> const MAP_TO_STRING = {
+        {map_t::NO_MERCY, "No Mercy"},
+        {map_t::CRASH_COURSE, "Crash Course"},
+        {map_t::DEATH_TOLL, "Death Toll"},
+        {map_t::DEAD_AIR, "Dead Air"},
+        {map_t::BLOOD_HARVEST, "Blood Harvest"},
+        {map_t::THE_SACRIFICE, "The Sacrifice"},
+        {map_t::THE_LAST_STAND, "The Last Stand"},
+        {map_t::DEAD_CENTER, "Dead Center"},
+        {map_t::THE_PASSING, "The Passing"},
+        {map_t::DARK_CARNIVAL, "Dark Carnival"},
+        {map_t::SWAMP_FEVER, "Swamp Fever"},
+        {map_t::HARD_RAIN, "Hard Rain"},
+        {map_t::THE_PARISH, "The Parish"},
+        {map_t::COLD_STREAM, "Cold Stream"},
+        {map_t::NOT_APPLICABLE, "N/A"}};
+
+    static inline std::unordered_map<std::string, map_t> const STRING_TO_MAP = {
+        {"No Mercy", map_t::NO_MERCY},
+        {"Crash Course", map_t::CRASH_COURSE},
+        {"Death Toll", map_t::DEATH_TOLL},
+        {"Dead Air", map_t::DEAD_AIR},
+        {"Blood Harvest", map_t::BLOOD_HARVEST},
+        {"The Sacrifice", map_t::THE_SACRIFICE},
+        {"The Last Stand", map_t::THE_LAST_STAND},
+        {"Dead Center", map_t::DEAD_CENTER},
+        {"The Passing", map_t::THE_PASSING},
+        {"Dark Carnival", map_t::DARK_CARNIVAL},
+        {"Swamp Fever", map_t::SWAMP_FEVER},
+        {"Hard Rain", map_t::HARD_RAIN},
+        {"The Parish", map_t::THE_PARISH},
+        {"Cold Stream", map_t::COLD_STREAM},
+        {"N/A", map_t::NOT_APPLICABLE}};
 
     using delta_t = long long int;
     using timestamp_t = std::chrono::system_clock::time_point;
