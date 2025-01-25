@@ -65,7 +65,7 @@ std::ostream &operator<<(std::ostream &os, match_t::map_t const &map)
     name = "The Sacrifice";
     break;
   case match_t::map_t::THE_LAST_STAND:
-    name = "The Last STand";
+    name = "The Last Stand";
     break;
   case match_t::map_t::DEAD_CENTER:
     name = "Dead Center";
@@ -92,5 +92,5 @@ std::ostream &operator<<(std::ostream &os, match_t::map_t const &map)
     name = "N/A";
     break;
   }
-  return os << std::quoted(name);
+  return os << name;
 }
