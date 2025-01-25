@@ -46,6 +46,7 @@ struct match_t
     team_t const &second(void) const;
     outcome_t const &outcome(void) const;
     map_t const &map(void) const;
+    std::chrono::system_clock::time_point const &timestamp(void) const;
 
 private:
     team_t const team_a_;
