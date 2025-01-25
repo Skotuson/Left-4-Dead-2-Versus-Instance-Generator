@@ -48,6 +48,8 @@ struct match_t
     map_t const &map(void) const;
     std::chrono::system_clock::time_point const &timestamp(void) const;
 
+    friend std::ostream &operator<<(std::ostream &os, map_t const &map);
+
 private:
     team_t const team_a_;
     team_t const team_b_;
