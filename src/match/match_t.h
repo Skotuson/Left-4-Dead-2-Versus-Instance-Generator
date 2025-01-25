@@ -1,5 +1,6 @@
 #pragma once
 
+#include <regex>
 #include <chrono>
 #include <optional>
 #include <unordered_map>
@@ -8,6 +9,9 @@
 
 struct match_t
 {
+    static inline std::regex const & OLD_MATCH_FORMAT = std::regex(R"((.+?)\s+x\s+(.+?)\s+-\s+(\d+)\s*:\s*(\d+))");
+    static inline std::regex const & NEW_MATCH_FORMAT = std::regex(R"((.+?)\s+x\s+(.+?)\s+-\s+(S|F)\s+'(.*?)'\s+(\d+))");
+
     enum outcome_t
     {
         FIRST_TEAM_WON,
