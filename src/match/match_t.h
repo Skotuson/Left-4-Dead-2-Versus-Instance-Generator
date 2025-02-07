@@ -10,12 +10,18 @@
 struct match_t
 {
     static inline std::regex const & OLD_MATCH_FORMAT = std::regex(R"((.+?)\s+x\s+(.+?)\s+-\s+(\d+)\s*:\s*(\d+))");
-    static inline std::regex const & NEW_MATCH_FORMAT = std::regex(R"((.+?)\s+x\s+(.+?)\s+-\s+(S|F)\s+'(.*?)'\s+(\d+))");
+    static inline std::regex const & NEW_MATCH_FORMAT = std::regex(R"((.+?)\s+x\s+(.+?)\s+-\s+(S|F)\s+'(.*?)'\s+(N|R)\s+(-?\d+)\s+(\d+))");
 
     enum outcome_t
     {
         FIRST_TEAM_WON,
         SECOND_TEAM_WON
+    };
+
+    enum gamemode_t
+    {
+        NORMAL,
+        REALISM
     };
 
     enum map_t
@@ -78,6 +84,7 @@ struct match_t
 
     match_t(team_t const &team_a, team_t const &team_b, outcome_t outcome,
             map_t map = NOT_APPLICABLE,
+            gamemode_t const & gamemode = NORMAL,
             std::optional<delta_t> const &score_diff = {},
             timestamp_t const &timestamp = std::chrono::system_clock::time_point{});
 
@@ -85,6 +92,8 @@ struct match_t
     team_t const &second(void) const;
     outcome_t const &outcome(void) const;
     map_t const &map(void) const;
+    gamemode_t const &gamemode(void) const;
+    std::optional<delta_t> const &score_diff(void) const;
     std::chrono::system_clock::time_point const &timestamp(void) const;
 
     friend std::ostream &operator<<(std::ostream &os, map_t const &map);
@@ -96,6 +105,8 @@ private:
     outcome_t outcome_;
 
     map_t map_;
+
+    gamemode_t gamemode_;
 
     std::optional<delta_t> score_diff_;
 

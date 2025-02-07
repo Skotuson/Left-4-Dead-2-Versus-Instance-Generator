@@ -36,9 +36,11 @@ database_t new_format_stream_database_deserializer_t::deserialize(std::istream &
             auto team_b = collect_team(match[2].str());
             auto outcome = match[3].str() == "F" ? match_t::outcome_t::FIRST_TEAM_WON : match_t::outcome_t::SECOND_TEAM_WON;
             auto map = match_t::STRING_TO_MAP.at(match[4].str());
-            auto timestamp = std::chrono::system_clock::time_point(std::chrono::seconds(std::stoll(match[5].str())));
+            auto gamemode = match[5].str() == "N" ? match_t::gamemode_t::NORMAL : match_t::gamemode_t::REALISM;
+            auto point_diff = match[6].str() == "-1" ? std::nullopt : std::optional<match_t::delta_t>(std::stoll(match[6].str()));
+            auto timestamp = std::chrono::system_clock::time_point(std::chrono::seconds(std::stoll(match[7].str())));
             
-            db.match_add(match_t(team_a, team_b, outcome, map, std::nullopt, timestamp));
+            db.match_add(match_t(team_a, team_b, outcome, map, gamemode, point_diff, timestamp));
         }
 
         else
