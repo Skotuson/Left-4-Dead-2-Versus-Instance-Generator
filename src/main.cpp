@@ -1,6 +1,7 @@
 #include <iostream>
 #include <cstring>
 #include <fstream>
+#include <numeric>
 #include <memory>
 #include <string>
 #include <list>
@@ -46,9 +47,9 @@ int main(int argc, char *argv[])
     auto saver_new = std::make_shared<file_stream_text_saver_t>("persistence/save_new.txt");
     saver_new->save(serializer_new->serialize(db_new));
 
-    for(auto const & cmd : controller.get_commands())
+    for (auto const &cmd : controller.get_commands())
     {
-        cmd -> execute(db_new);
+        cmd->execute(db_new);
     }
 
     return 0;
