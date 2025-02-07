@@ -1,6 +1,9 @@
 #include "add_handler_t.h"
 
 #include <memory>
+#include <vector>
+
+#include "../../../../io/deserializer/database/stream/new_format_stream_database_deserializer_t.h"
 
 add_handler_t::add_handler_t(std::string const &flag, controller_t &controller)
     : param_handler_t(flag, controller)
