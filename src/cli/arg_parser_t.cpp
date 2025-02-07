@@ -1,6 +1,7 @@
 #include "arg_parser_t.h"
 
 #include "../utility/list_utility.h"
+#include "cor/param/cmd/add_handler_t.h"
 #include "cor/param/cmd/winrate_handler_t.h"
 
 #include <memory>
@@ -46,9 +47,13 @@ std::shared_ptr<handler_t<_PARAM_HANDLER_PAIR_>> arg_parser_t::get_chain(void)
 {
     std::shared_ptr<param_handler_t> w_handler = std::make_shared<winrate_handler_t>("-w", controller_);
     std::shared_ptr<param_handler_t> winrate_handler = std::make_shared<winrate_handler_t>("--winrate", controller_);
+    std::shared_ptr<param_handler_t> a_handler = std::make_shared<add_handler_t>("-a", controller_);
+    std::shared_ptr<param_handler_t> add_handler = std::make_shared<add_handler_t>("--add", controller_);
 
     w_handler
-        ->set_next(winrate_handler);
+        ->set_next(winrate_handler)
+        ->set_next(a_handler)
+        ->set_next(add_handler);
 
     return w_handler;
 }
