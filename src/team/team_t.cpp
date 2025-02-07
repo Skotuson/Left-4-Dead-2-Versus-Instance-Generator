@@ -5,12 +5,12 @@ void team_t::player_add(player_t const &player)
     teammates_.insert(player);
 }
 
-player_t const &team_t::player_get(player_t::player_id_t const &id)
+std::optional<player_t> const team_t::player_get(player_t::player_id_t const &id) const
 {
     auto it = teammates_.find(player_t(id));
     if (it == teammates_.end())
     {
-        // TODO: throw error
+        return std::nullopt;
     }
     return *it;
 }
