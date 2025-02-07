@@ -6,6 +6,8 @@
 #include <list>
 
 #include "store/database_t.h"
+#include "store/cmd/stat/winrate_command_t.h"
+
 #include "cli/arg_parser_t.h"
 
 #include "io/deserializer/database/stream/old_format_stream_database_deserializer_t.h"
@@ -18,7 +20,8 @@
 
 int main(int argc, char *argv[])
 {
-    std::list<std::string> params(argv, argv + argc);
+    // Skip the filename
+    std::list<std::string> params(argv + 1, argv + argc);
     controller_t controller;
     arg_parser_t(controller).parse(params);
 
@@ -42,5 +45,11 @@ int main(int argc, char *argv[])
 
     auto saver_new = std::make_shared<file_stream_text_saver_t>("persistence/save_new.txt");
     saver_new->save(serializer_new->serialize(db_new));
+
+    for(auto const & cmd : controller.get_commands())
+    {
+        cmd -> execute(db_new);
+    }
+
     return 0;
 }
