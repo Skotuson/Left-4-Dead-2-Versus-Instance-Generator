@@ -23,6 +23,11 @@ bool match_t::played(player_t const &player) const
   return first().player_get(player.identifier()) || second().player_get(player.identifier());
 }
 
+bool match_t::won(player_t const &player) const
+{
+  return outcome() == match_t::outcome_t::FIRST_TEAM_WON ? first().player_get(player.identifier()).has_value() : second().player_get(player.identifier()).has_value();
+}
+
 team_t const &match_t::first(void) const
 {
   return team_a_;

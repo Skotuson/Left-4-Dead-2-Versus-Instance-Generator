@@ -9,8 +9,8 @@
 
 struct match_t
 {
-    static inline std::regex const & OLD_MATCH_FORMAT = std::regex(R"((.+?)\s+x\s+(.+?)\s+-\s+(\d+)\s*:\s*(\d+))");
-    static inline std::regex const & NEW_MATCH_FORMAT = std::regex(R"((.+?)\s+x\s+(.+?)\s+-\s+(S|F)\s+'(.*?)'\s+(N|R)\s+(-?\d+)\s+(\d+))");
+    static inline std::regex const &OLD_MATCH_FORMAT = std::regex(R"((.+?)\s+x\s+(.+?)\s+-\s+(\d+)\s*:\s*(\d+))");
+    static inline std::regex const &NEW_MATCH_FORMAT = std::regex(R"((.+?)\s+x\s+(.+?)\s+-\s+(S|F)\s+'(.*?)'\s+(N|R)\s+(-?\d+)\s+(\d+))");
 
     enum outcome_t
     {
@@ -84,11 +84,12 @@ struct match_t
 
     match_t(team_t const &team_a, team_t const &team_b, outcome_t outcome,
             map_t map = NOT_APPLICABLE,
-            gamemode_t const & gamemode = NORMAL,
+            gamemode_t const &gamemode = NORMAL,
             std::optional<delta_t> const &score_diff = {},
             timestamp_t const &timestamp = std::chrono::system_clock::time_point{});
 
     bool played(player_t const &player) const;
+    bool won(player_t const &player) const;
 
     team_t const &first(void) const;
     team_t const &second(void) const;
