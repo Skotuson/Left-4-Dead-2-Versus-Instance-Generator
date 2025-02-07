@@ -18,6 +18,11 @@ match_t::match_t(team_t const &team_a, team_t const &team_b,
 {
 }
 
+bool match_t::played(player_t const &player) const
+{
+  return first().player_get(player.identifier()) || second().player_get(player.identifier());
+}
+
 team_t const &match_t::first(void) const
 {
   return team_a_;

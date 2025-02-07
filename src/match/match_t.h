@@ -88,6 +88,8 @@ struct match_t
             std::optional<delta_t> const &score_diff = {},
             timestamp_t const &timestamp = std::chrono::system_clock::time_point{});
 
+    bool played(player_t const &player) const;
+
     team_t const &first(void) const;
     team_t const &second(void) const;
     outcome_t const &outcome(void) const;
