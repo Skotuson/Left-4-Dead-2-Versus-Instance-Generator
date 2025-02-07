@@ -10,7 +10,12 @@
 struct match_t
 {
     static inline std::regex const &OLD_MATCH_FORMAT = std::regex(R"((.+?)\s+x\s+(.+?)\s+-\s+(\d+)\s*:\s*(\d+))");
-    static inline std::regex const &NEW_MATCH_FORMAT = std::regex(R"((.+?)\s+x\s+(.+?)\s+-\s+(S|F)\s+'(.*?)'\s+(N|R)\s+(-?\d+)\s+(\d+))");
+
+    static inline std::regex const &NEW_MATCH_FORMAT_FULL = std::regex(R"((.+?)\s+x\s+(.+?)\s+-\s+(S|F)\s+'(.*?)'\s+(N|R)\s+(-?\d+)\s+(\d+))");
+    static inline std::regex const &NEW_MATCH_FORMAT_NO_TIMESTAMP = std::regex(R"((.+?)\s+x\s+(.+?)\s+-\s+(S|F)\s+'(.*?)'\s+(N|R)\s+(-?\d+))");
+    static inline std::regex const &NEW_MATCH_FORMAT_NO_SCORE_DIFF = std::regex(R"((.+?)\s+x\s+(.+?)\s+-\s+(S|F)\s+'(.*?)'\s+(N|R))");
+    static inline std::regex const &NEW_MATCH_FORMAT_NO_GAMEMODE = std::regex(R"((.+?)\s+x\s+(.+?)\s+-\s+(S|F)\s+'(.*?)')");
+    static inline std::regex const &NEW_MATCH_FORMAT_NO_MAP = std::regex(R"((.+?)\s+x\s+(.+?)\s+-\s+(S|F))");
 
     enum outcome_t
     {
