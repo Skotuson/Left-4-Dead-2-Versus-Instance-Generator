@@ -41,16 +41,16 @@ int main(int argc, char *argv[])
     db_new = deserializer_new->deserialize(ifs_new);
     ifs_new.close();
 
+    for (auto const &cmd : controller.get_commands())
+    {
+        cmd->execute(db_new);
+    }
+
     auto saver_old = std::make_shared<file_stream_text_saver_t>("persistence/save.txt");
     saver_old->save(serializer_old->serialize(db_old));
 
     auto saver_new = std::make_shared<file_stream_text_saver_t>("persistence/save_new.txt");
     saver_new->save(serializer_new->serialize(db_new));
-
-    for (auto const &cmd : controller.get_commands())
-    {
-        cmd->execute(db_new);
-    }
 
     return 0;
 }
