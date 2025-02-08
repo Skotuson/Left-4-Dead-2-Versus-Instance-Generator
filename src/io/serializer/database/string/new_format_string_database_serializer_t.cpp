@@ -25,7 +25,7 @@ std::string new_format_string_database_serializer_t::serialize(database_t const 
     for (auto const &match : database.matches_get())
     {
         result << match.first() << " x "
-               << match.second() << " - "
+               << match.second() << " : "
                << outcome_to_string(match.outcome())
                << " '" << match.map() << "'"
                << " " << gamemode_to_string(match.gamemode())
