@@ -22,7 +22,7 @@ database_t new_format_stream_database_deserializer_t::deserialize(std::istream &
         match_t::map_t map = match_t::map_t::NOT_APPLICABLE;
         match_t::gamemode_t gamemode = match_t::gamemode_t::NORMAL;
         std::optional<match_t::delta_t> score_diff = std::nullopt;
-        auto timestamp = std::chrono::system_clock::time_point{};
+        auto timestamp = std::chrono::system_clock::now();
 
         auto collect_team = [&](std::string const &str)
         {
