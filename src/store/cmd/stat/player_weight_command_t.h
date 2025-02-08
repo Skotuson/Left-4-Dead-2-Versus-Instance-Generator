@@ -1,7 +1,7 @@
 #pragma once
 
 #include "../command_t.h"
-#include "../../player/player_t.h"
+#include "../../../player/player_t.h"
 
 struct player_weight_command_t : command_t
 {
