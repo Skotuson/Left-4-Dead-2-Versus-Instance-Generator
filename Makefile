@@ -1,35 +1,32 @@
 CXX      = g++
 LD       = g++
-CXXFLAGS = -g -std=c++17 -Wall -pedantic -fsanitize=address
-OUTPUT   = gen.out
+CXXFLAGS = -std=c++17 -Wall -pedantic -O2 -O3
 
-SOURCES = $(wildcard *.cpp */*.cpp)
-OBJS    = $(SOURCES:.cpp=.o)
+OUTPUT   = gen
+TEST_OUTPUT = gen_test
+
+MAIN_SOURCES = $(wildcard $(shell find src -name '*.cpp'))
+TEST_SOURCES = $(filter-out ./src/main.cpp, $(wildcard $(shell find . -name '*.cpp')))
+
+MAIN_OBJS = $(MAIN_SOURCES:.cpp=.o)
+TEST_OBJS = $(TEST_SOURCES:.cpp=.o)
 
 all: $(OUTPUT)
 
-compile: $(OUTPUT)
+$(OUTPUT): $(MAIN_OBJS)
+	$(LD) $(CXXFLAGS) -o $@ $^
 
-$(OUTPUT): $(OBJS)
+$(TEST_OUTPUT): $(TEST_OBJS)
 	$(LD) $(CXXFLAGS) -o $@ $^
 
 %.o: %.cpp
 	$(CXX) $(CXXFLAGS) -c -o $@ $<
 
-stat: $(OUTPUT)
-	./$(OUTPUT) -stat
-
-team: $(OUTPUT)
-	./$(OUTPUT) -team
-
-update: $(OUTPUT)
-	./$(OUTPUT) -update
-
-i: $(OUTPUT)
-	./$(OUTPUT) -interactive
-
 clean:
-	rm -f *.o $(OUTPUT)
- 
+	rm -f $(wildcard $(shell find . -name '*.o')) $(OUTPUT) $(TEST_OUTPUT)
+
 run: $(OUTPUT)
 	./$(OUTPUT)
+
+test: $(TEST_OUTPUT)
+	./$(TEST_OUTPUT)
