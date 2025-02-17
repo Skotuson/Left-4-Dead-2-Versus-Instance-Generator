@@ -43,6 +43,7 @@ int main(int argc, char *argv[])
 
     for (auto const &cmd : controller.get_commands())
     {
+        cmd->execute(db_old);
         cmd->execute(db_new);
     }
 
