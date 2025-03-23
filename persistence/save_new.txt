@@ -90,3 +90,11 @@ Jirka Simon Tomas x Adam Ondra Vitek : F 'Dead Center' R 565 1739832483
 Jirka Vitek x Lukas Tomas : F 'Dead Air' R 390 1740949880
 Adam Lukas x Jirka Tomas : S 'The Parish' R 810 1741381880
 Lukas Simon Tomas x Adam Jirka Ondra : F 'No Mercy' R 5 1741469582
+Adam Lukas Simon Vitek x Jirka O'Neil Ondra Tomas : S 'Death Toll' R 318 1742163820
+Adam Jirka Lukas Simon x O'Neil Ondra Tomas Vitek : S 'Dark Carnival' R 30 1742168020
+Adam Ondra Simon Vitek x Jirka Lukas O'Neil Tomas : S 'Swamp Fever' R 379 1742248840
+Lukas Ondra Simon Tomas x Adam Jirka O'Neil Vitek : S 'No Mercy' R 95 1742252020
+Adam Lukas x Jirka Ondra : S 'Blood Harvest' R 664 1742593840
+Lukas Ondra x Adam Jirka : S 'The Passing' R 228 1742596120
+Adam Simon Tomas Vitek x Jirka Lukas Ondra : S 'Hard Rain' R 284 1742765320
+Adam Lukas Simon x Jirka Ondra Tomas Vitek : S 'Death Toll' R 450 1742766180
