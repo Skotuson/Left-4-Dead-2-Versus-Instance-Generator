@@ -23,6 +23,7 @@ void winrate_command_t::execute(database_t &db) const
             }
         }
 
+        // TODO: add generic stream later
         std::cout << player.identifier() << " won " << won << " out of " << games_total << " games"
                   << std::setprecision(PRINT_PRECISION_) << " (" << (won / (double)games_total) * 100.0 << "%)" << std::endl;
     }
