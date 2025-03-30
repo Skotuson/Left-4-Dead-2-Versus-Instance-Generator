@@ -53,7 +53,7 @@ match_t::gamemode_t const &match_t::gamemode(void) const
   return gamemode_;
 }
 
-std::optional<match_t::delta_t> const &match_t::score_diff(void) const 
+std::optional<match_t::delta_t> const &match_t::score_diff(void) const
 {
   return score_diff_;
 }
@@ -66,4 +66,12 @@ std::chrono::system_clock::time_point const &match_t::timestamp(void) const
 std::ostream &operator<<(std::ostream &os, match_t::map_t const &map)
 {
   return os << match_t::MAP_TO_STRING.at(map);
+}
+
+std::ostream &operator<<(std::ostream &os, match_t const &match)
+{
+  // TODO: make prettier
+  os << "<" << match.first() << ">" << " played against " << "<" << match.second() << ">" << " on " << match.map() << ". "
+     << (match.outcome() == match_t::outcome_t::FIRST_TEAM_WON ? "First" : "Second") << " team has won.";
+  return os;
 }

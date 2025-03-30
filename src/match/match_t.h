@@ -105,6 +105,7 @@ struct match_t
     std::chrono::system_clock::time_point const &timestamp(void) const;
 
     friend std::ostream &operator<<(std::ostream &os, map_t const &map);
+    friend std::ostream &operator<<(std::ostream &os, match_t const &match);
 
 private:
     team_t const team_a_;
