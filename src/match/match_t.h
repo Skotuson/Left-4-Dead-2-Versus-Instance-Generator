@@ -26,7 +26,8 @@ struct match_t
     enum gamemode_t
     {
         NORMAL,
-        REALISM
+        REALISM,
+        HEALTHAPOCALYPSE
     };
 
     enum map_t
