@@ -17,6 +17,9 @@ void database_t::team_add(team_t const &team)
 void database_t::match_add(match_t const &match)
 {
     matches_.push_back(match);
+    
+    team_add(match.first());
+    team_add(match.second());
 }
 
 database_t::players_t const &database_t::players_get(void) const
