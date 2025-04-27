@@ -5,6 +5,7 @@
 #include "cor/param/cmd/winrate_handler_t.h"
 #include "cor/param/cmd/list_games_handler_t.h"
 #include "cor/param/cmd/filter_loss_handler_t.h"
+#include "cor/param/cmd/list_seasons_handler_t.h"
 
 #include <memory>
 #include <cassert>
@@ -55,6 +56,8 @@ std::shared_ptr<handler_t<_PARAM_HANDLER_PAIR_>> arg_parser_t::get_chain(void)
     std::shared_ptr<param_handler_t> filter_loss_handler = std::make_shared<filter_loss_handler_t>("--filter-loss", controller_);
     std::shared_ptr<param_handler_t> lg_handler = std::make_shared<list_games_handler_t>("-lg", controller_);
     std::shared_ptr<param_handler_t> list_games_handler = std::make_shared<list_games_handler_t>("--list-games", controller_);
+    std::shared_ptr<param_handler_t> ls_handler = std::make_shared<list_seasons_handler_t>("-ls", controller_);
+    std::shared_ptr<param_handler_t> list_seasons_handler = std::make_shared<list_seasons_handler_t>("--list-seasons", controller_);
 
     w_handler
         ->set_next(winrate_handler)
@@ -63,7 +66,10 @@ std::shared_ptr<handler_t<_PARAM_HANDLER_PAIR_>> arg_parser_t::get_chain(void)
         ->set_next(fl_handler)
         ->set_next(filter_loss_handler)
         ->set_next(lg_handler)
-        ->set_next(list_games_handler);
+        ->set_next(list_games_handler)
+        ->set_next(ls_handler)
+        ->set_next(list_seasons_handler)
+        ;
 
     return w_handler;
 }
