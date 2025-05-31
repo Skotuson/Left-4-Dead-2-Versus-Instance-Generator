@@ -127,3 +127,5 @@ O'Neil Tomas Vitek x Adam Lukas Simon : F 'Crash Course' R 128 1746386365
 Lukas Tomas Vitek x Adam O'Neil Simon : F 'Swamp Fever' R 342 1746389446
 O'Neil Ondra Simon x Lukas Tomas Vitek : F 'No Mercy' R 246 1746643993
 Jirka Simon Vitek x Lukas O'Neil Ondra : F 'Dead Center' R 244 1746995551
+O'Neil Simon x Lukas Vitek : F 'The Last Stand' R 43 1748562425
+Lukas O'Neil Tomas x Adam Jirka Vitek : F 'Hard Rain' R 155 1748721125
