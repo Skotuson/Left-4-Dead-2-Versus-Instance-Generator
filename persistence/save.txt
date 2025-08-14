@@ -121,3 +121,4 @@ O'Neil Simon x Lukas Vitek - 1 : 0
 O'Neil Tomas Vitek x Adam Lukas Simon - 1 : 0
 Ondra Tomas Vitek x Jirka Lukas Simon - 0 : 1
 Ondra Vitek x Jirka Tomas - 0 : 1
+Tomas Vitek x Jirka Ondra - 1 : 0
